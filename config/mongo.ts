@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
-const DB_URL = process.env.MONGO_URI;
 import loadModels from "../app/models";
+const DB_URL = process.env.MONGO_URI;
 
 const initMongo = () => {
   if (!DB_URL) {

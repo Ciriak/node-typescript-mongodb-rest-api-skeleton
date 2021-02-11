@@ -1,17 +1,21 @@
-const mongoose = require('mongoose')
-const mongoosePaginate = require('mongoose-paginate-v2')
+import mongoose, { Schema, Document } from "mongoose";
+import mongoosePaginate from "mongoose-paginate-v2";
 
-const CitySchema = new mongoose.Schema(
+export interface ICity extends Document {
+  name: string;
+}
+
+const CitySchema: Schema = new mongoose.Schema(
   {
     name: {
       type: String,
-      required: true
-    }
+      required: true,
+    },
   },
   {
     versionKey: false,
-    timestamps: true
+    timestamps: true,
   }
-)
-CitySchema.plugin(mongoosePaginate)
-module.exports = mongoose.model('City', CitySchema)
+);
+CitySchema.plugin(mongoosePaginate);
+export default mongoose.model<ICity>("City", CitySchema);

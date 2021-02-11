@@ -1,119 +1,146 @@
-const mongoose = require('mongoose')
-const bcrypt = require('bcrypt')
-const validator = require('validator')
-const mongoosePaginate = require('mongoose-paginate-v2')
+import mongoose, { Schema, Document } from "mongoose";
+import bcrypt from "bcrypt";
+import validator from "validator";
+import mongoosePaginate from "mongoose-paginate-v2";
+import { NextFunction } from "express";
 
-const UserSchema = new mongoose.Schema(
+export enum IUserRole {
+  ADMIN = "admin",
+  USER = "user",
+}
+
+export interface IUser extends Document {
+  name: string;
+  email: string;
+  password: string;
+  role?: IUserRole;
+  verification?: string;
+  verified?: boolean;
+  phone?: string;
+  city?: string;
+  country?: string;
+  urlTwitter?: string;
+  urlGitHub?: string;
+  loginAttempts?: number;
+  blockExpires: Date;
+  comparePassword(passwordAttempt: string, cb: any): any;
+}
+
+const UserSchema: Schema = new mongoose.Schema(
   {
     name: {
       type: String,
-      required: true
+      required: true,
     },
     email: {
       type: String,
       validate: {
         validator: validator.isEmail,
-        message: 'EMAIL_IS_NOT_VALID'
+        message: "EMAIL_IS_NOT_VALID",
       },
       lowercase: true,
       unique: true,
-      required: true
+      required: true,
     },
     password: {
       type: String,
       required: true,
-      select: false
+      select: false,
     },
     role: {
       type: String,
-      enum: ['user', 'admin'],
-      default: 'user'
+      enum: ["user", "admin"],
+      default: "user",
     },
     verification: {
-      type: String
+      type: String,
     },
     verified: {
       type: Boolean,
-      default: false
+      default: false,
     },
     phone: {
-      type: String
+      type: String,
     },
     city: {
-      type: String
+      type: String,
     },
     country: {
-      type: String
+      type: String,
     },
     urlTwitter: {
       type: String,
       validate: {
-        validator(v) {
-          return v === '' ? true : validator.isURL(v)
+        validator(v: string) {
+          return v === "" ? true : validator.isURL(v);
         },
-        message: 'NOT_A_VALID_URL'
+        message: "NOT_A_VALID_URL",
       },
-      lowercase: true
+      lowercase: true,
     },
     urlGitHub: {
       type: String,
       validate: {
-        validator(v) {
-          return v === '' ? true : validator.isURL(v)
+        validator(v: string) {
+          return v === "" ? true : validator.isURL(v);
         },
-        message: 'NOT_A_VALID_URL'
+        message: "NOT_A_VALID_URL",
       },
-      lowercase: true
+      lowercase: true,
     },
     loginAttempts: {
       type: Number,
       default: 0,
-      select: false
+      select: false,
     },
     blockExpires: {
       type: Date,
       default: Date.now,
-      select: false
-    }
+      select: false,
+    },
   },
   {
     versionKey: false,
-    timestamps: true
+    timestamps: true,
   }
-)
+);
 
-const hash = (user, salt, next) => {
+const hash = (user: IUser, salt: string, next: NextFunction) => {
   bcrypt.hash(user.password, salt, (error, newHash) => {
     if (error) {
-      return next(error)
+      return next(error);
     }
-    user.password = newHash
-    return next()
-  })
-}
+    user.password = newHash;
+    return next();
+  });
+};
 
-const genSalt = (user, SALT_FACTOR, next) => {
+const genSalt = (user: IUser, SALT_FACTOR: number | undefined, next: any) => {
   bcrypt.genSalt(SALT_FACTOR, (err, salt) => {
     if (err) {
-      return next(err)
+      return next(err);
     }
-    return hash(user, salt, next)
-  })
-}
+    return hash(user, salt, next);
+  });
+};
 
-UserSchema.pre('save', function (next) {
-  const that = this
-  const SALT_FACTOR = 5
-  if (!that.isModified('password')) {
-    return next()
+UserSchema.pre("save", function (next) {
+  const that = this as IUser;
+  const SALT_FACTOR = 5;
+  if (!that.isModified("password")) {
+    return next();
   }
-  return genSalt(that, SALT_FACTOR, next)
-})
+  return genSalt(that, SALT_FACTOR, next);
+});
 
-UserSchema.methods.comparePassword = function (passwordAttempt, cb) {
-  bcrypt.compare(passwordAttempt, this.password, (err, isMatch) =>
+//FIXME this.get("password") is probably false
+UserSchema.methods.comparePassword = function (
+  passwordAttempt: string,
+  cb: any
+) {
+  bcrypt.compare(passwordAttempt, this.get("password"), (err, isMatch) =>
     err ? cb(err) : cb(null, isMatch)
-  )
-}
-UserSchema.plugin(mongoosePaginate)
-module.exports = mongoose.model('User', UserSchema)
+  );
+};
+UserSchema.plugin(mongoosePaginate);
+export default mongoose.model<IUser>("User", UserSchema);

@@ -1,6 +1,7 @@
 import { validationResult } from "express-validator";
 import handleError from "./handleError";
 import buildErrObject from "./buildErrObject";
+import { NextFunction, Request, Response } from "express";
 
 /**
  * Builds error for validation files
@@ -8,7 +9,7 @@ import buildErrObject from "./buildErrObject";
  * @param {Object} res - response object
  * @param {Object} next - next object
  */
-const validateResult = (req: any, res: any, next: any) => {
+const validateResult = (req: Request, res: Response, next: NextFunction) => {
   try {
     validationResult(req).throw();
     if (req.body.email) {

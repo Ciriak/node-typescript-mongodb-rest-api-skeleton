@@ -1,6 +1,6 @@
 import fs from "fs";
+import removeExtensionFromFile from "../middleware/utils/removeExtensionFromFile";
 const modelsPath = `${__dirname}/`;
-import { removeExtensionFromFile } from "../middleware/utils";
 
 export default function loadModels() {
   /*

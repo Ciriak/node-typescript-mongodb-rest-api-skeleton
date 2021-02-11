@@ -1,33 +1,40 @@
-const mongoose = require('mongoose')
-const validator = require('validator')
+import mongoose, { Schema, Document } from "mongoose";
+import validator from "validator";
 
-const UserAccessSchema = new mongoose.Schema(
+export interface IUserAccess extends Document {
+  email: string;
+  ip: string;
+  browser: string;
+  country: string;
+}
+
+const UserAccessSchema: Schema = new mongoose.Schema(
   {
     email: {
       type: String,
       validate: {
         validator: validator.isEmail,
-        message: 'EMAIL_IS_NOT_VALID'
+        message: "EMAIL_IS_NOT_VALID",
       },
       lowercase: true,
-      required: true
+      required: true,
     },
     ip: {
       type: String,
-      required: true
+      required: true,
     },
     browser: {
       type: String,
-      required: true
+      required: true,
     },
     country: {
       type: String,
-      required: true
-    }
+      required: true,
+    },
   },
   {
     versionKey: false,
-    timestamps: true
+    timestamps: true,
   }
-)
-module.exports = mongoose.model('UserAccess', UserAccessSchema)
+);
+export default mongoose.model<IUserAccess>("UserAccess", UserAccessSchema);
