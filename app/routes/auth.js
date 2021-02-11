@@ -1,29 +1,29 @@
-const express = require('express')
-const router = express.Router()
-require('../../config/passport')
-const passport = require('passport')
-const requireAuth = passport.authenticate('jwt', {
-  session: false
-})
-const trimRequest = require('trim-request')
+import { Router } from "express";
+const router = Router();
+import "../../config/passport";
+import { authenticate } from "passport";
+const requireAuth = authenticate("jwt", {
+  session: false,
+});
+import { all } from "trim-request";
 
-const {
+import {
   register,
   verify,
   forgotPassword,
   resetPassword,
   getRefreshToken,
   login,
-  roleAuthorization
-} = require('../controllers/auth')
+  roleAuthorization,
+} from "../controllers/auth";
 
-const {
+import {
   validateRegister,
   validateVerify,
   validateForgotPassword,
   validateResetPassword,
-  validateLogin
-} = require('../controllers/auth/validators')
+  validateLogin,
+} from "../controllers/auth/validators";
 
 /*
  * Auth routes
@@ -32,37 +32,37 @@ const {
 /*
  * Register route
  */
-router.post('/register', trimRequest.all, validateRegister, register)
+router.post("/register", all, validateRegister, register);
 
 /*
  * Verify route
  */
-router.post('/verify', trimRequest.all, validateVerify, verify)
+router.post("/verify", all, validateVerify, verify);
 
 /*
  * Forgot password route
  */
-router.post('/forgot', trimRequest.all, validateForgotPassword, forgotPassword)
+router.post("/forgot", all, validateForgotPassword, forgotPassword);
 
 /*
  * Reset password route
  */
-router.post('/reset', trimRequest.all, validateResetPassword, resetPassword)
+router.post("/reset", all, validateResetPassword, resetPassword);
 
 /*
  * Get new refresh token
  */
 router.get(
-  '/token',
+  "/token",
   requireAuth,
-  roleAuthorization(['user', 'admin']),
-  trimRequest.all,
+  roleAuthorization(["user", "admin"]),
+  all,
   getRefreshToken
-)
+);
 
 /*
  * Login route
  */
-router.post('/login', trimRequest.all, validateLogin, login)
+router.post("/login", all, validateLogin, login);
 
-module.exports = router
+export default router;
