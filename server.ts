@@ -1,15 +1,15 @@
 require("dotenv-safe").config();
-const express = require("express");
-const bodyParser = require("body-parser");
-const morgan = require("morgan");
+import express from "express";
+import bodyParser from "body-parser";
+import morgan from "morgan";
 import compression from "compression";
-const helmet = require("helmet");
-const cors = require("cors");
-const passport = require("passport");
+import helmet from "helmet";
+import cors from "cors";
+import passport from "passport";
 const app = express();
-const i18n = require("i18n");
-const initMongo = require("./config/mongo");
-const path = require("path");
+import i18n from "i18n";
+import initMongo from "./config/mongo";
+import path from "path";
 
 // Setup express server port from ENV, default: 3000
 app.set("port", process.env.PORT || 3000);
