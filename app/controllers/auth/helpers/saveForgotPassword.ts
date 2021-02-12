@@ -1,8 +1,7 @@
 import { Request } from "express";
 import { CallbackError } from "mongoose";
 import { IForgotPassword } from "../../../models/forgotPassword";
-
-import uuid from "uuid";
+import { v4 } from "uuid";
 import ForgotPassword from "../../../models/forgotPassword";
 import buildErrObject from "../../../middleware/utils/buildErrObject";
 import getCountry from "../../../middleware/utils/getCountry";
@@ -17,7 +16,7 @@ const saveForgotPassword = (req: Request): Promise<IForgotPassword> => {
   return new Promise((resolve, reject) => {
     const forgot = new ForgotPassword({
       email: req.body.email,
-      verification: uuid.v4(),
+      verification: v4(),
       ipRequest: getIP(req),
       browserRequest: getBrowserInfo(req),
       countryRequest: getCountry(req),

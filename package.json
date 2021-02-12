@@ -12,9 +12,9 @@
     "mocha": "mocha -r ts-node/register 'test/**/*.ts'  --timeout 5000 --exit",
     "test": "npm run clean && npm run compile && npm run test:e2e",
     "test:e2e": "cross-env NODE_ENV=test npm run fresh && npm run mocha",
-    "dev": "cross-env NODE_ENV=development && npm run clean && nodemon --watch '**/*.ts' --exec 'ts-node' server.ts",
-    "fresh": "npm run clean && npm run compile && npm run db:clean && npm run db:seed",
-    "db:clean": "node dist/clean.js",
+    "dev": "cross-env NODE_ENV=development && npm run clean && nodemon --watch '**/*.ts' --exec ts-node server.ts",
+    "fresh": "npm run clean && npm run db:clean && npm run db:seed",
+    "db:clean": "ts-node clean.ts",
     "db:seed": "node seed.js",
     "prettier": "prettier --write --config .prettierrc.json \"**/*.js\"",
     "lint": "eslint --fix --config .eslintrc.json \"**/*.js\"",
@@ -95,7 +95,6 @@
     "rimraf": "^3.0.2",
     "trim-request": "^1.0.6",
     "ts-node": "^9.1.1",
-    "uuid": "^8.3.2",
     "validator": "^13.5.2"
   },
   "keywords": [

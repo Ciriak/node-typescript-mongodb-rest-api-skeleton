@@ -24,19 +24,5 @@
         "PORT": "3111"
       }
     },
-    {
-      "name": "Launch jest in debug",
-      "type": "node",
-      "request": "launch",
-      "cwd": "${workspaceFolder}",
-      "runtimeArgs": [
-        "--inspect-brk",
-        "node_modules/.bin/jest",
-        "--runInBand",
-        "--config=jest.config.js",
-        "${file}"
-      ],
-      "port": 9231
-    }
   ]
 }

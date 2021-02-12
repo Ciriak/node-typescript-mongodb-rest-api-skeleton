@@ -11,8 +11,9 @@ const secret = process.env.JWT_SECRET || "";
 const getUserIdFromToken = (token: string): Promise<string> => {
   return new Promise((resolve, reject) => {
     // Decrypts, verifies and decode token
-    const decoded = jwt.verify(decrypt(token), secret);
-    if (!decoded || typeof decoded !== "object") {
+    const decryptedToken = decrypt(token);
+    const decoded = jwt.verify(decryptedToken, secret);
+    if (!decoded) {
       reject(buildErrObject(409, "BAD_TOKEN"));
     }
     resolve((decoded as any).data._id);

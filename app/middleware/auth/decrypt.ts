@@ -16,10 +16,9 @@ const iv = Buffer.alloc(16, 0); // Initialization crypto vector
  * Decrypts text
  * @param {string} text - text to decrypt
  */
-const decrypt = (text: string) => {
-  const decipher = crypto.createDecipheriv(algorithm, key, iv);
-
+const decrypt = (text: string): string => {
   try {
+    const decipher = crypto.createDecipheriv(algorithm, key, iv);
     let decrypted = decipher.update(text, "hex", "utf8");
     decrypted += decipher.final("utf8");
     return decrypted;

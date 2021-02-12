@@ -1,4 +1,4 @@
-import uuid from "uuid";
+import { v4 } from "uuid";
 import buildErrObject from "../../../middleware/utils/buildErrObject";
 import User, { IUser } from "../../../models/user";
 
@@ -12,7 +12,7 @@ const registerUser = (req: IUser): Promise<IUser> => {
       name: req.name,
       email: req.email,
       password: req.password,
-      verification: uuid.v4(),
+      verification: v4(),
     });
     user.save((err, item) => {
       if (err) {
