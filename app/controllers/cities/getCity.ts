@@ -1,21 +1,21 @@
-const { matchedData } = require('express-validator')
-const City = require('../../models/city')
-const { getItem } = require('../../middleware/db')
-const { isIDGood, handleError } = require('../../middleware/utils')
+import { Request, Response } from "express";
+import { matchedData } from "express-validator";
+import getItem from "../../middleware/db/getItem";
+import City from "../../models/city";
 
 /**
  * Get item function called by route
  * @param {Object} req - request object
  * @param {Object} res - response object
  */
-const getCity = async (req, res) => {
+const getCity = async (req: Request, res: Response) => {
   try {
-    req = matchedData(req)
-    const id = await isIDGood(req.id)
-    res.status(200).json(await getItem(id, City))
+    const matchedReq = matchedData(req);
+    const id = await isIDGood(matchedReq.id);
+    res.status(200).json(await getItem(id, City));
   } catch (error) {
-    handleError(res, error)
+    handleError(res, error);
   }
-}
+};
 
-module.exports = { getCity }
+export default getCity;

@@ -1,10 +1,11 @@
+import buildErrObject from "../../../middleware/utils/buildErrObject";
 import City from "../../../models/city";
 
 /**
  * Checks if a city already exists in database
  * @param {string} name - name of item
  */
-const cityExists = (name: string = "") => {
+const cityExists = (name: string) => {
   return new Promise((resolve, reject) => {
     City.findOne(
       {

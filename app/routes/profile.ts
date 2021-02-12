@@ -1,24 +1,18 @@
-const express = require('express')
-const router = express.Router()
-require('../../config/passport')
-const passport = require('passport')
-const requireAuth = passport.authenticate('jwt', {
-  session: false
-})
-const trimRequest = require('trim-request')
-
-const { roleAuthorization } = require('../controllers/auth')
-
-const {
-  getProfile,
-  updateProfile,
-  changePassword
-} = require('../controllers/profile')
-
-const {
-  validateUpdateProfile,
-  validateChangePassword
-} = require('../controllers/profile/validators')
+import express from "express";
+const router = express.Router();
+require("../../config/passport");
+import passport from "passport";
+import roleAuthorization from "../controllers/auth/roleAuthorization";
+import { UserRole } from "../models/user";
+const requireAuth = passport.authenticate("jwt", {
+  session: false,
+});
+const trimRequest = require("trim-request");
+import getProfile from "../controllers/profile/getProfile";
+import validateUpdateProfile from "../controllers/profile/validators/validateUpdateProfile";
+import updateProfile from "../controllers/profile/updateProfile";
+import validateChangePassword from "../controllers/profile/validators/validateChangePassword";
+import changePassword from "../controllers/profile/changePassword";
 
 /*
  * Profile routes
@@ -28,35 +22,35 @@ const {
  * Get profile route
  */
 router.get(
-  '/',
+  "/",
   requireAuth,
-  roleAuthorization(['user', 'admin']),
+  roleAuthorization([UserRole.USER, UserRole.ADMIN]),
   trimRequest.all,
   getProfile
-)
+);
 
 /*
  * Update profile route
  */
 router.patch(
-  '/',
+  "/",
   requireAuth,
-  roleAuthorization(['user', 'admin']),
+  roleAuthorization([UserRole.USER, UserRole.ADMIN]),
   trimRequest.all,
   validateUpdateProfile,
   updateProfile
-)
+);
 
 /*
  * Change password route
  */
 router.post(
-  '/changePassword',
+  "/changePassword",
   requireAuth,
-  roleAuthorization(['user', 'admin']),
+  roleAuthorization([UserRole.USER, UserRole.ADMIN]),
   trimRequest.all,
   validateChangePassword,
   changePassword
-)
+);
 
-module.exports = router
+export default router;

@@ -4,6 +4,7 @@ import model from "../../models/user";
 import { matchedData } from "express-validator";
 
 import deleteItem from "../../middleware/db/deleteItem";
+import isIDGood from "../../middleware/utils/isIDGood";
 
 /**
  * Delete item function called by route

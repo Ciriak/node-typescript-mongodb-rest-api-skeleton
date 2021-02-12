@@ -4,7 +4,7 @@ import validator from "validator";
 import mongoosePaginate from "mongoose-paginate-v2";
 import { NextFunction } from "express";
 
-export enum IUserRole {
+export enum UserRole {
   ADMIN = "admin",
   USER = "user",
 }
@@ -13,7 +13,7 @@ export interface IUser extends Document {
   name: string;
   email: string;
   password: string;
-  role?: IUserRole;
+  role?: UserRole;
   verification?: string;
   verified?: boolean;
   phone?: string;

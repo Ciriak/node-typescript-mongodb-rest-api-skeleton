@@ -1,20 +1,21 @@
-const { validateResult } = require('../../../middleware/utils')
-const { check } = require('express-validator')
+import { NextFunction, Request, Response } from "express";
+import { check } from "express-validator";
+import validateResult from "../../../middleware/utils/validateResult";
 
 /**
  * Validates create new item request
  */
 const validateCreateCity = [
-  check('name')
+  check("name")
     .exists()
-    .withMessage('MISSING')
+    .withMessage("MISSING")
     .not()
     .isEmpty()
-    .withMessage('IS_EMPTY')
+    .withMessage("IS_EMPTY")
     .trim(),
-  (req, res, next) => {
-    validateResult(req, res, next)
-  }
-]
+  (req: Request, res: Response, next: NextFunction) => {
+    validateResult(req, res, next);
+  },
+];
 
-module.exports = { validateCreateCity }
+export default validateCreateCity;

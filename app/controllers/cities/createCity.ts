@@ -1,24 +1,26 @@
-const City = require('../../models/city')
-const { createItem } = require('../../middleware/db')
-const { handleError } = require('../../middleware/utils')
-const { matchedData } = require('express-validator')
-const { cityExists } = require('./helpers')
+import City from "../../models/city";
+
+import { matchedData } from "express-validator";
+
+import { Request, Response } from "express";
+import cityExists from "./helpers/cityExists";
+import createItem from "../../middleware/db/createItem";
 
 /**
  * Create item function called by route
  * @param {Object} req - request object
  * @param {Object} res - response object
  */
-const createCity = async (req, res) => {
+const createCity = async (req: Request, res: Response) => {
   try {
-    req = matchedData(req)
-    const doesCityExists = await cityExists(req.name)
+    const matchedReq = matchedData(req);
+    const doesCityExists = await cityExists(matchedReq.name);
     if (!doesCityExists) {
-      res.status(201).json(await createItem(req, City))
+      res.status(201).json(await createItem(matchedReq, City));
     }
   } catch (error) {
-    handleError(res, error)
+    handleError(res, error);
   }
-}
+};
 
-module.exports = { createCity }
+export default createCity;

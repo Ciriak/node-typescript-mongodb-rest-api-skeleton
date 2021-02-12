@@ -8,7 +8,7 @@ export interface IForgotPassword extends Document {
   ipRequest?: string;
   browserRequest?: string;
   countryRequest?: string;
-  ipChanged?: string;
+  ipChanged?: string | null;
   browserChanged?: string;
   countryChanged?: string;
 }

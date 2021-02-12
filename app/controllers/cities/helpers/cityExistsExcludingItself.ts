@@ -1,3 +1,4 @@
+import buildErrObject from "../../../middleware/utils/buildErrObject";
 import City from "../../../models/city";
 
 /**
@@ -5,7 +6,7 @@ import City from "../../../models/city";
  * @param {string} id - id of item
  * @param {string} name - name of item
  */
-const cityExistsExcludingItself = (id: string = "", name: string = "") => {
+const cityExistsExcludingItself = (id: string, name: string) => {
   return new Promise((resolve, reject) => {
     City.findOne(
       {

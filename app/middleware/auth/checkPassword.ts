@@ -1,5 +1,5 @@
-import { Model } from "mongoose";
-import User, { IUser } from "../../models/user";
+import { IUser } from "../../models/user";
+import buildErrObject from "../utils/buildErrObject";
 
 /**
  * Checks is password matches
@@ -7,7 +7,7 @@ import User, { IUser } from "../../models/user";
  * @param {Object} user - user object
  * @returns {boolean}
  */
-const checkPassword = (password: string, user: IUser) => {
+const checkPassword = (password: string, user: IUser): Promise<boolean> => {
   return new Promise((resolve, reject) => {
     user.comparePassword(password, (err: Error, isMatch: boolean) => {
       if (err) {
@@ -21,4 +21,4 @@ const checkPassword = (password: string, user: IUser) => {
   });
 };
 
-module.exports = { checkPassword };
+export default checkPassword;
