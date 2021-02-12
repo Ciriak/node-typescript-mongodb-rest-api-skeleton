@@ -1,3 +1,4 @@
+import buildErrObject from "../../../middleware/utils/buildErrObject";
 import User, { IUser } from "../../../models/user";
 
 /**

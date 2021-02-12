@@ -4,6 +4,7 @@ import User from "../../models/user";
 import { matchedData } from "express-validator";
 import isIDGood from "../../middleware/utils/isIDGood";
 import getItem from "../../middleware/db/getItem";
+import handleError from "../../middleware/utils/handleError";
 
 /**
  * Get item function called by route

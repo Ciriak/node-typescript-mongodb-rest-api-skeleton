@@ -3,6 +3,7 @@ import City from "../../models/city";
 import { Request, Response } from "express";
 import checkQueryString from "../../middleware/db/checkQueryString";
 import getItems from "../../middleware/db/getItems";
+import handleError from "../../middleware/utils/handleError";
 
 /**
  * Get items function called by route

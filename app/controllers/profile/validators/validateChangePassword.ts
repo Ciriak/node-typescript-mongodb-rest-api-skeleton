@@ -1,5 +1,6 @@
 import { NextFunction, Request, Response } from "express";
 import { check } from "express-validator";
+import validateResult from "../../../middleware/utils/validateResult";
 
 /**
  * Validates change password request

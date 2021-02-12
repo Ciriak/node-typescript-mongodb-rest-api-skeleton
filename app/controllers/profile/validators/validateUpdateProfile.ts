@@ -1,6 +1,7 @@
 import validator from "validator";
 import { check } from "express-validator";
 import { NextFunction, Request, Response } from "express";
+import validateResult from "../../../middleware/utils/validateResult";
 
 /**
  * Validates update profile request

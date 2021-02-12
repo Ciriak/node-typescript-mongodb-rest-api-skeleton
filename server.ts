@@ -10,6 +10,7 @@ const app = express();
 import i18n from "i18n";
 import initMongo from "./config/mongo";
 import path from "path";
+import routes from "./app/routes";
 
 // Setup express server port from ENV, default: 3000
 app.set("port", process.env.PORT || 3000);
@@ -67,7 +68,7 @@ app.use(express.static("public"));
 app.set("views", path.join(__dirname, "views"));
 app.engine("html", require("ejs").renderFile);
 app.set("view engine", "html");
-app.use(require("./app/routes"));
+app.use(routes);
 app.listen(app.get("port"));
 
 // Init MongoDB

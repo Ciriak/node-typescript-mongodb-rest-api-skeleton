@@ -6,6 +6,7 @@ import { matchedData } from "express-validator";
 import isIDGood from "../../middleware/utils/isIDGood";
 import emailExistsExcludingMyself from "../../middleware/emailer/emailExistsExcludingMyself";
 import updateItem from "../../middleware/db/updateItem";
+import handleError from "../../middleware/utils/handleError";
 
 /**
  * Update item function called by route

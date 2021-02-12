@@ -1,3 +1,5 @@
+import buildErrObject from "../utils/buildErrObject";
+
 /**
  * Checks the query string for filtering records
  * query.filter should be the text to search (string)

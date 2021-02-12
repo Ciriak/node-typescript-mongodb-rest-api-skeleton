@@ -2,7 +2,18 @@ import express from "express";
 const router = express.Router();
 require("../../config/passport");
 import passport from "passport";
+import roleAuthorization from "../controllers/auth/roleAuthorization";
+import createCity from "../controllers/cities/createCity";
+import deleteCity from "../controllers/cities/deleteCity";
+import getAllCities from "../controllers/cities/getAllCities";
+import getCities from "../controllers/cities/getCities";
+import getCity from "../controllers/cities/getCity";
 import updateCity from "../controllers/cities/updateCity";
+import validateCreateCity from "../controllers/cities/validators/validateCreateCity";
+import validateDeleteCity from "../controllers/cities/validators/validateDeleteCity";
+import validateGetCity from "../controllers/cities/validators/validateGetCity";
+import validateUpdateCity from "../controllers/cities/validators/validateUpdateCity";
+import { UserRole } from "../models/user";
 const requireAuth = passport.authenticate("jwt", {
   session: false,
 });
@@ -23,7 +34,7 @@ router.get("/all", getAllCities);
 router.get(
   "/",
   requireAuth,
-  roleAuthorization(["admin"]),
+  roleAuthorization([UserRole.ADMIN]),
   trimRequest.all,
   getCities
 );
@@ -34,7 +45,7 @@ router.get(
 router.post(
   "/",
   requireAuth,
-  roleAuthorization(["admin"]),
+  roleAuthorization([UserRole.ADMIN]),
   trimRequest.all,
   validateCreateCity,
   createCity
@@ -46,7 +57,7 @@ router.post(
 router.get(
   "/:id",
   requireAuth,
-  roleAuthorization(["admin"]),
+  roleAuthorization([UserRole.ADMIN]),
   trimRequest.all,
   validateGetCity,
   getCity
@@ -58,7 +69,7 @@ router.get(
 router.patch(
   "/:id",
   requireAuth,
-  roleAuthorization(["admin"]),
+  roleAuthorization([UserRole.ADMIN]),
   trimRequest.all,
   validateUpdateCity,
   updateCity
@@ -70,7 +81,7 @@ router.patch(
 router.delete(
   "/:id",
   requireAuth,
-  roleAuthorization(["admin"]),
+  roleAuthorization([UserRole.ADMIN]),
   trimRequest.all,
   validateDeleteCity,
   deleteCity

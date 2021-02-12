@@ -1,26 +1,20 @@
 import express, { Request, Response } from "express";
 const router = express.Router();
-import fs from "fs";
-import removeExtensionFromFile from "../middleware/utils/removeExtensionFromFile";
-const routesPath = `${__dirname}/`;
 
 /*
- * Load routes statically and/or dynamically
+ * Import routes manually
  */
 
+import auth from "./auth";
+import cities from "./cities";
+import profile from "./profile";
+import users from "./users";
+
 // Load Auth route
-router.use("/", require("./auth"));
-
-// Loop routes path and loads every file as a route except this file and Auth route
-fs.readdirSync(routesPath).filter((file) => {
-  // Take filename and remove last part (extension)
-  const routeFile = removeExtensionFromFile(file);
-  // Prevents loading of this file and auth file
-  return routeFile !== "index" && routeFile !== "auth" && file !== ".DS_Store"
-    ? router.use(`/${routeFile}`, require(`./${routeFile}`))
-    : "";
-});
-
+router.use("/", auth);
+router.use("/cities", cities);
+router.use("/profile", profile);
+router.use("/users", users);
 /*
  * Setup routes for index
  */
