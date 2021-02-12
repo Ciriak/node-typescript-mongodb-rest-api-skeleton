@@ -1,4 +1,4 @@
-import handleError from "./handleError";
+import handleError from "../app/middleware/utils/handleError";
 
 const mockResponse = () => {
   const res: any = {};
