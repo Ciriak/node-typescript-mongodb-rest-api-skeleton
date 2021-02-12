@@ -1,7 +1,7 @@
 dist: xenial
 language: node_js
 node_js:
-  - '12'
+  - "12"
 cache:
   npm: true
 services:
@@ -18,4 +18,4 @@ deploy:
   on:
     branch: master
     tags: true
-    repo: davellanedam/node-express-mongodb-jwt-rest-api-skeleton
+    repo: Ciriak/node-typescript-mongodb-rest-api-skeleto

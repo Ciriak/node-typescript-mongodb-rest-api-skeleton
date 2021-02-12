@@ -1,7 +1,7 @@
 {
-  "name": "node-express-mongodb-jwt-rest-api-skeleton",
+  "name": "node-typescript-mongodb-rest-api-skeleton",
   "version": "0.1.0",
-  "description": "Node.js Typescript MongoDB REST API - This is a basic API REST skeleton written on JavaScript using async/await. Great for building a starter web API for your front-end (Android, iOS, Vue, react, angular, or anything that can consume an API)",
+  "description": "Node.js Typescript MongoDB REST API - A basic API REST skeleton written on Typescript. Great for building a starter web API for your front-end",
   "license": "MIT",
   "repository": {
     "type": "git",
