@@ -1,5 +1,3 @@
-import { IUser } from "../../../models/user";
-
 import jwt from "jsonwebtoken";
 import encrypt from "../../../middleware/auth/encrypt";
 

@@ -23,13 +23,7 @@ const register = async (req: Request, res: Response) => {
     if (!doesEmailExists) {
       const item = await registerUser(matchedReq);
       const userInfo = await setUserInfo(item);
-      const response = await returnRegisterToken(
-        {
-          _id: matchedReq._id,
-          verification: matchedReq.verification || "",
-        },
-        userInfo
-      );
+      const response = await returnRegisterToken(item, userInfo);
       sendRegistrationEmailMessage(locale, item);
       res.status(201).json(response);
     }

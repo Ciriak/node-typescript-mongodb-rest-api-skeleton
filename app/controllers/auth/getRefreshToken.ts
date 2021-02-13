@@ -1,4 +1,5 @@
 import { Request, Response } from "express";
+import buildErrObject from "../../middleware/utils/buildErrObject";
 import handleError from "../../middleware/utils/handleError";
 import isIDGood from "../../middleware/utils/isIDGood";
 import findUserById from "./helpers/findUserById";
@@ -12,8 +13,15 @@ import saveUserAccessAndReturnToken from "./helpers/saveUserAccessAndReturnToken
  */
 const getRefreshToken = async (req: Request, res: Response) => {
   try {
-    const tokenEncrypted =
-      req.headers.authorization || "".replace("Bearer ", "").trim();
+    if (!req.headers.authorization) {
+      const err = buildErrObject(422, "MISSING_TOKEN");
+      handleError(res, err);
+      return;
+    }
+
+    const tokenEncrypted = req.headers.authorization
+      .replace("Bearer ", "")
+      .trim();
     let userId = await getUserIdFromToken(tokenEncrypted);
     userId = await isIDGood(userId);
     const user = await findUserById(userId);

@@ -11,8 +11,8 @@ const returnRegisterToken = (
     _id,
     verification,
   }: {
-    _id: string;
-    verification: string;
+    _id?: string;
+    verification?: string;
   },
   userInfo: IUser
 ): Promise<{
@@ -24,7 +24,7 @@ const returnRegisterToken = (
       userInfo.verification = verification;
     }
     const data = {
-      token: generateToken(_id),
+      token: generateToken(_id || ""),
       user: userInfo,
     };
     resolve(data);
