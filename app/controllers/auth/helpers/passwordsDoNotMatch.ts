@@ -1,3 +1,4 @@
+import IErrorObject from "../../../../interfaces/ErrorObject.interface";
 import buildErrObject from "../../../middleware/utils/buildErrObject";
 import { IUser } from "../../../models/user";
 import blockUser from "./blockUser";
@@ -9,7 +10,7 @@ const LOGIN_ATTEMPTS = 5;
  * Adds one attempt to loginAttempts, then compares loginAttempts with the constant LOGIN_ATTEMPTS, if is less returns wrong password, else returns blockUser function
  * @param {Object} user - user object
  */
-const passwordsDoNotMatch = async (user: IUser) => {
+const passwordsDoNotMatch = async (user: IUser): Promise<IErrorObject> => {
   return new Promise(async (resolve, reject) => {
     if (!user.loginAttempts) {
       user.loginAttempts = 0;

@@ -3,13 +3,13 @@ import User, { IUser } from "../../../models/user";
 
 /**
  * Checks if verification id exists for user
- * @param {string} id - verification id
+ * @param {string} verificationId - verification id
  */
-const verificationExists = (id: string): Promise<IUser> => {
+const verificationExists = (verificationId: string): Promise<IUser> => {
   return new Promise((resolve, reject) => {
     User.findOne(
       {
-        verification: id,
+        verification: verificationId,
         verified: false,
       },
       async (err: Error, user: IUser) => {
