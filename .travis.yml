@@ -18,4 +18,4 @@ deploy:
   on:
     branch: master
     tags: true
-    repo: Ciriak/node-typescript-mongodb-rest-api-skeleto
+    repo: Ciriak/node-typescript-mongodb-rest-api-skeleton
