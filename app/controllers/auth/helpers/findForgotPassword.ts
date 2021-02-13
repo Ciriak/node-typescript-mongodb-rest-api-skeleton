@@ -1,8 +1,8 @@
-import { CallbackError } from "mongoose";
-import itemNotFound from "../../../middleware/utils/itemNotFound";
+import { CallbackError } from 'mongoose';
+import itemNotFound from '../../../middleware/utils/itemNotFound';
 import ForgotPassword, {
-  IForgotPassword,
-} from "../../../models/forgotPassword";
+  IForgotPassword
+} from '../../../models/forgotPassword';
 
 /**
  * Checks if a forgot password verification exists
@@ -13,11 +13,11 @@ const findForgotPassword = (id: string): Promise<IForgotPassword> => {
     ForgotPassword.findOne(
       {
         verification: id,
-        used: false,
+        used: false
       },
       async (err: CallbackError, item: IForgotPassword | null) => {
         try {
-          await itemNotFound(err, item, "NOT_FOUND_OR_ALREADY_USED");
+          await itemNotFound(err, item, 'NOT_FOUND_OR_ALREADY_USED');
           if (item) {
             resolve(item);
           }

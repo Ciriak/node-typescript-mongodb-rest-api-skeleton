@@ -1,4 +1,4 @@
-import { PaginateResult } from "mongoose";
+import { PaginateResult } from 'mongoose';
 
 /**
  * Hack for mongoose-paginate, removes 'id' from results

@@ -1,5 +1,5 @@
-import itemNotFound from "../../../middleware/utils/itemNotFound";
-import User, { IUser } from "../../../models/user";
+import itemNotFound from '../../../middleware/utils/itemNotFound';
+import User, { IUser } from '../../../models/user';
 
 /**
  * Checks if verification id exists for user
@@ -10,11 +10,11 @@ const verificationExists = (verificationId: string): Promise<IUser> => {
     User.findOne(
       {
         verification: verificationId,
-        verified: false,
+        verified: false
       },
       async (err: Error, user: IUser) => {
         try {
-          await itemNotFound(err, user, "NOT_FOUND_OR_ALREADY_VERIFIED");
+          await itemNotFound(err, user, 'NOT_FOUND_OR_ALREADY_VERIFIED');
           resolve(user);
         } catch (error) {
           reject(error);

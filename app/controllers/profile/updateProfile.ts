@@ -1,8 +1,8 @@
-import { matchedData } from "express-validator";
-import { Request, Response } from "express";
-import updateProfileInDB from "./helpers/updateProfileInDB";
-import isIDGood from "../../middleware/utils/isIDGood";
-import handleError from "../../middleware/utils/handleError";
+import { matchedData } from 'express-validator';
+import { Request, Response } from 'express';
+import updateProfileInDB from './helpers/updateProfileInDB';
+import isIDGood from '../../middleware/utils/isIDGood';
+import handleError from '../../middleware/utils/handleError';
 
 /**
  * Update profile function called by route

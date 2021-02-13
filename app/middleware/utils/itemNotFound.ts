@@ -1,5 +1,5 @@
-import { CallbackError } from "mongoose";
-import buildErrObject from "./buildErrObject";
+import { CallbackError } from 'mongoose';
+import buildErrObject from './buildErrObject';
 
 /**
  * Item not found
@@ -10,7 +10,7 @@ import buildErrObject from "./buildErrObject";
 const itemNotFound = (
   err: CallbackError,
   item: object | null,
-  message = "NOT_FOUND"
+  message = 'NOT_FOUND'
 ): Promise<void> => {
   return new Promise((resolve, reject) => {
     if (err) {

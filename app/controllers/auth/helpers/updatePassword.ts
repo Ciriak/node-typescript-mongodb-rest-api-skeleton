@@ -1,5 +1,5 @@
-import itemNotFound from "../../../middleware/utils/itemNotFound";
-import { IUser } from "../../../models/user";
+import itemNotFound from '../../../middleware/utils/itemNotFound';
+import { IUser } from '../../../models/user';
 
 /**
  * Updates a user password in database
@@ -11,7 +11,7 @@ const updatePassword = (password: string, user: IUser) => {
     user.password = password;
     user.save(async (err, item) => {
       try {
-        await itemNotFound(err, item, "NOT_FOUND");
+        await itemNotFound(err, item, 'NOT_FOUND');
         resolve(item);
       } catch (error) {
         reject(error);

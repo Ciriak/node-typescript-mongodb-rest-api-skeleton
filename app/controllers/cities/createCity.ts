@@ -1,11 +1,11 @@
-import City from "../../models/city";
+import City from '../../models/city';
 
-import { matchedData } from "express-validator";
+import { matchedData } from 'express-validator';
 
-import { Request, Response } from "express";
-import cityExists from "./helpers/cityExists";
-import createItem from "../../middleware/db/createItem";
-import handleError from "../../middleware/utils/handleError";
+import { Request, Response } from 'express';
+import cityExists from './helpers/cityExists';
+import createItem from '../../middleware/db/createItem';
+import handleError from '../../middleware/utils/handleError';
 
 /**
  * Create item function called by route

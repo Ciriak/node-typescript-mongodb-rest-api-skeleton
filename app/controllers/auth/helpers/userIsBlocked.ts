@@ -1,5 +1,5 @@
-import buildErrObject from "../../../middleware/utils/buildErrObject";
-import { IUser } from "../../../models/user";
+import buildErrObject from '../../../middleware/utils/buildErrObject';
+import { IUser } from '../../../models/user';
 
 /**
  * Checks if blockExpires from user is greater than now
@@ -8,7 +8,7 @@ import { IUser } from "../../../models/user";
 const userIsBlocked = (user: IUser) => {
   return new Promise((resolve, reject) => {
     if (user.blockExpires > new Date()) {
-      return reject(buildErrObject(409, "BLOCKED_USER"));
+      return reject(buildErrObject(409, 'BLOCKED_USER'));
     }
     resolve(true);
   });

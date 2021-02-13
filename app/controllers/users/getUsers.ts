@@ -1,9 +1,9 @@
-import { Request, Response } from "express";
-import checkQueryString from "../../middleware/db/checkQueryString";
-import getItems from "../../middleware/db/getItems";
-import handleError from "../../middleware/utils/handleError";
+import { Request, Response } from 'express';
+import checkQueryString from '../../middleware/db/checkQueryString';
+import getItems from '../../middleware/db/getItems';
+import handleError from '../../middleware/utils/handleError';
 
-import User from "../../models/user";
+import User from '../../models/user';
 
 /**
  * Get items function called by route

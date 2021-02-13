@@ -1,6 +1,6 @@
-import { v4 } from "uuid";
-import buildErrObject from "../../../middleware/utils/buildErrObject";
-import User, { IUser } from "../../../models/user";
+import { v4 } from 'uuid';
+import buildErrObject from '../../../middleware/utils/buildErrObject';
+import User, { IUser } from '../../../models/user';
 
 /**
  * Creates a new item in database

@@ -4,7 +4,7 @@
  */
 const buildSuccObject = (message: string) => {
   return {
-    msg: message,
+    msg: message
   };
 };
 

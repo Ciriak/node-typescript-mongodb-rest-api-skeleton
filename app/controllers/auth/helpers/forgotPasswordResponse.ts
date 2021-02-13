@@ -4,20 +4,20 @@
  */
 const forgotPasswordResponse = ({
   email,
-  verification,
+  verification
 }: {
   email: string;
   verification: string;
 }) => {
   let data = {
-    msg: "RESET_EMAIL_SENT",
+    msg: 'RESET_EMAIL_SENT',
     email,
-    verification: null,
+    verification: null
   } as any;
-  if (process.env.NODE_ENV !== "production") {
+  if (process.env.NODE_ENV !== 'production') {
     data = {
       ...data,
-      verification,
+      verification
     };
   }
   return data;

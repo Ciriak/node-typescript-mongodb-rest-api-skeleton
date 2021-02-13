@@ -1,8 +1,8 @@
-import IErrorObject from "../../../../interfaces/ErrorObject.interface";
-import buildErrObject from "../../../middleware/utils/buildErrObject";
-import { IUser } from "../../../models/user";
-import blockUser from "./blockUser";
-import saveLoginAttemptsToDB from "./saveLoginAttemptsToDB";
+import IErrorObject from '../../../../interfaces/ErrorObject.interface';
+import buildErrObject from '../../../middleware/utils/buildErrObject';
+import { IUser } from '../../../models/user';
+import blockUser from './blockUser';
+import saveLoginAttemptsToDB from './saveLoginAttemptsToDB';
 
 const LOGIN_ATTEMPTS = 5;
 
@@ -19,7 +19,7 @@ const passwordsDoNotMatch = async (user: IUser): Promise<IErrorObject> => {
       user.loginAttempts += 1;
       await saveLoginAttemptsToDB(user);
       if (user.loginAttempts <= LOGIN_ATTEMPTS) {
-        return reject(buildErrObject(409, "WRONG_PASSWORD"));
+        return reject(buildErrObject(409, 'WRONG_PASSWORD'));
       }
 
       resolve(await blockUser(user));

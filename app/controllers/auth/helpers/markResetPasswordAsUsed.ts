@@ -1,10 +1,10 @@
-import { Request } from "express";
-import buildSuccObject from "../../../middleware/utils/buildSuccObject";
-import getBrowserInfo from "../../../middleware/utils/getBrowserInfo";
-import getCountry from "../../../middleware/utils/getCountry";
-import getIP from "../../../middleware/utils/getIP";
-import itemNotFound from "../../../middleware/utils/itemNotFound";
-import { IForgotPassword } from "../../../models/forgotPassword";
+import { Request } from 'express';
+import buildSuccObject from '../../../middleware/utils/buildSuccObject';
+import getBrowserInfo from '../../../middleware/utils/getBrowserInfo';
+import getCountry from '../../../middleware/utils/getCountry';
+import getIP from '../../../middleware/utils/getIP';
+import itemNotFound from '../../../middleware/utils/itemNotFound';
+import { IForgotPassword } from '../../../models/forgotPassword';
 
 /**
  * Marks a request to reset password as used
@@ -19,8 +19,8 @@ const markResetPasswordAsUsed = (req: Request, forgot: IForgotPassword) => {
     forgot.countryChanged = getCountry(req);
     forgot.save(async (err, item) => {
       try {
-        await itemNotFound(err, item, "NOT_FOUND");
-        resolve(buildSuccObject("PASSWORD_CHANGED"));
+        await itemNotFound(err, item, 'NOT_FOUND');
+        resolve(buildSuccObject('PASSWORD_CHANGED'));
       } catch (error) {
         reject(error);
       }

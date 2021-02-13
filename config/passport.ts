@@ -1,8 +1,8 @@
-import { Request } from "express";
-import passport from "passport";
-import User, { IUser } from "../app/models/user";
-import { Strategy } from "passport-jwt";
-import decrypt from "../app/middleware/auth/decrypt";
+import { Request } from 'express';
+import passport from 'passport';
+import User, { IUser } from '../app/models/user';
+import { Strategy } from 'passport-jwt';
+import decrypt from '../app/middleware/auth/decrypt';
 
 /**
  * Extracts token from: header, body or query
@@ -12,7 +12,7 @@ import decrypt from "../app/middleware/auth/decrypt";
 const jwtExtractor = (req: Request): string => {
   let token = null;
   if (req.headers.authorization) {
-    token = req.headers.authorization.replace("Bearer ", "").trim();
+    token = req.headers.authorization.replace('Bearer ', '').trim();
   } else if (req.body.token) {
     token = req.body.token.trim();
   } else if (req.query.token) {
@@ -30,7 +30,7 @@ const jwtExtractor = (req: Request): string => {
  */
 const jwtOptions = {
   jwtFromRequest: jwtExtractor,
-  secretOrKey: process.env.JWT_SECRET,
+  secretOrKey: process.env.JWT_SECRET
 };
 
 /**

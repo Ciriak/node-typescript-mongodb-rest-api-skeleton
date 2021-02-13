@@ -1,12 +1,12 @@
-import mongoose, { Schema, Document } from "mongoose";
-import bcrypt from "bcrypt";
-import validator from "validator";
-import mongoosePaginate from "mongoose-paginate-v2";
-import { NextFunction } from "express";
+import mongoose, { Schema, Document } from 'mongoose';
+import bcrypt from 'bcrypt';
+import validator from 'validator';
+import mongoosePaginate from 'mongoose-paginate-v2';
+import { NextFunction } from 'express';
 
 export enum UserRole {
-  ADMIN = "admin",
-  USER = "user",
+  ADMIN = 'admin',
+  USER = 'user'
 }
 
 export interface IUser extends Document {
@@ -30,78 +30,78 @@ const UserSchema: Schema = new mongoose.Schema(
   {
     name: {
       type: String,
-      required: true,
+      required: true
     },
     email: {
       type: String,
       validate: {
         validator: validator.isEmail,
-        message: "EMAIL_IS_NOT_VALID",
+        message: 'EMAIL_IS_NOT_VALID'
       },
       lowercase: true,
       unique: true,
-      required: true,
+      required: true
     },
     password: {
       type: String,
       required: true,
-      select: false,
+      select: false
     },
     role: {
       type: String,
-      enum: ["user", "admin"],
-      default: "user",
+      enum: ['user', 'admin'],
+      default: 'user'
     },
     verification: {
-      type: String,
+      type: String
     },
     verified: {
       type: Boolean,
-      default: false,
+      default: false
     },
     phone: {
-      type: String,
+      type: String
     },
     city: {
-      type: String,
+      type: String
     },
     country: {
-      type: String,
+      type: String
     },
     urlTwitter: {
       type: String,
       validate: {
         validator(v: string) {
-          return v === "" ? true : validator.isURL(v);
+          return v === '' ? true : validator.isURL(v);
         },
-        message: "NOT_A_VALID_URL",
+        message: 'NOT_A_VALID_URL'
       },
-      lowercase: true,
+      lowercase: true
     },
     urlGitHub: {
       type: String,
       validate: {
         validator(v: string) {
-          return v === "" ? true : validator.isURL(v);
+          return v === '' ? true : validator.isURL(v);
         },
-        message: "NOT_A_VALID_URL",
+        message: 'NOT_A_VALID_URL'
       },
-      lowercase: true,
+      lowercase: true
     },
     loginAttempts: {
       type: Number,
       default: 0,
-      select: false,
+      select: false
     },
     blockExpires: {
       type: Date,
       default: Date.now,
-      select: false,
-    },
+      select: false
+    }
   },
   {
     versionKey: false,
-    timestamps: true,
+    timestamps: true
   }
 );
 
@@ -124,10 +124,10 @@ const genSalt = (user: IUser, SALT_FACTOR: number | undefined, next: any) => {
   });
 };
 
-UserSchema.pre("save", function (next) {
+UserSchema.pre('save', function (next) {
   const that = this as IUser;
   const SALT_FACTOR = 5;
-  if (!that.isModified("password")) {
+  if (!that.isModified('password')) {
     return next();
   }
   return genSalt(that, SALT_FACTOR, next);
@@ -138,9 +138,9 @@ UserSchema.methods.comparePassword = function (
   passwordAttempt: string,
   cb: any
 ) {
-  bcrypt.compare(passwordAttempt, this.get("password"), (err, isMatch) =>
+  bcrypt.compare(passwordAttempt, this.get('password'), (err, isMatch) =>
     err ? cb(err) : cb(null, isMatch)
   );
 };
 UserSchema.plugin(mongoosePaginate);
-export default mongoose.model<IUser>("User", UserSchema);
+export default mongoose.model<IUser>('User', UserSchema);

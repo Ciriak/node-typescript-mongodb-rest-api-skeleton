@@ -1,5 +1,5 @@
-import buildErrObject from "../../../middleware/utils/buildErrObject";
-import { IUser } from "../../../models/user";
+import buildErrObject from '../../../middleware/utils/buildErrObject';
+import { IUser } from '../../../models/user';
 
 /**
  * Verifies an user
@@ -14,7 +14,7 @@ const verifyUser = (user: IUser) => {
       }
       resolve({
         email: item.email,
-        verified: item.verified,
+        verified: item.verified
       });
     });
   });

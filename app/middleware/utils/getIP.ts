@@ -1,4 +1,4 @@
-import requestIp, { Request } from "request-ip";
+import requestIp, { Request } from 'request-ip';
 
 /**
  * Gets IP from user

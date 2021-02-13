@@ -1,12 +1,12 @@
-import { Request } from "express";
-import { CallbackError } from "mongoose";
-import { IForgotPassword } from "../../../models/forgotPassword";
-import { v4 } from "uuid";
-import ForgotPassword from "../../../models/forgotPassword";
-import buildErrObject from "../../../middleware/utils/buildErrObject";
-import getCountry from "../../../middleware/utils/getCountry";
-import getBrowserInfo from "../../../middleware/utils/getBrowserInfo";
-import getIP from "../../../middleware/utils/getIP";
+import { Request } from 'express';
+import { CallbackError } from 'mongoose';
+import { IForgotPassword } from '../../../models/forgotPassword';
+import { v4 } from 'uuid';
+import ForgotPassword from '../../../models/forgotPassword';
+import buildErrObject from '../../../middleware/utils/buildErrObject';
+import getCountry from '../../../middleware/utils/getCountry';
+import getBrowserInfo from '../../../middleware/utils/getBrowserInfo';
+import getIP from '../../../middleware/utils/getIP';
 
 /**
  * Creates a new password forgot
@@ -19,7 +19,7 @@ const saveForgotPassword = (req: Request): Promise<IForgotPassword> => {
       verification: v4(),
       ipRequest: getIP(req),
       browserRequest: getBrowserInfo(req),
-      countryRequest: getCountry(req),
+      countryRequest: getCountry(req)
     });
     forgot.save((err: CallbackError, item: IForgotPassword) => {
       if (err) {

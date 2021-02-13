@@ -1,11 +1,11 @@
-import { Request, Response } from "express";
+import { Request, Response } from 'express';
 
-import model from "../../models/user";
-import { matchedData } from "express-validator";
+import model from '../../models/user';
+import { matchedData } from 'express-validator';
 
-import deleteItem from "../../middleware/db/deleteItem";
-import isIDGood from "../../middleware/utils/isIDGood";
-import handleError from "../../middleware/utils/handleError";
+import deleteItem from '../../middleware/db/deleteItem';
+import isIDGood from '../../middleware/utils/isIDGood';
+import handleError from '../../middleware/utils/handleError';
 
 /**
  * Delete item function called by route

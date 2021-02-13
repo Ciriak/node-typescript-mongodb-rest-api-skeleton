@@ -1,6 +1,6 @@
-import { IUser } from "../../models/user";
-import i18n from "i18n";
-import prepareToSendEmail from "./prepareToSendEmail";
+import { IUser } from '../../models/user';
+import i18n from 'i18n';
+import prepareToSendEmail from './prepareToSendEmail';
 
 /**
  * Sends registration email
@@ -9,12 +9,12 @@ import prepareToSendEmail from "./prepareToSendEmail";
  */
 const sendRegistrationEmailMessage = (locale: string, user: IUser) => {
   i18n.setLocale(locale);
-  const subject = i18n.__("registration.SUBJECT");
+  const subject = i18n.__('registration.SUBJECT');
   const htmlMessage = i18n.__(
-    "registration.MESSAGE",
+    'registration.MESSAGE',
     user.name,
-    process.env.FRONTEND_URL || "",
-    user.verification || ""
+    process.env.FRONTEND_URL || '',
+    user.verification || ''
   );
   prepareToSendEmail(user, subject, htmlMessage);
 };

@@ -1,5 +1,5 @@
-const faker = require('faker')
-const ObjectID = require('mongodb').ObjectID
+const faker = require('faker');
+const ObjectID = require('mongodb').ObjectID;
 
 module.exports = [
   {
@@ -34,4 +34,4 @@ module.exports = [
     createdAt: faker.date.past(),
     updatedAt: faker.date.recent()
   }
-]
+];

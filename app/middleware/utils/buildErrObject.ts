@@ -1,4 +1,4 @@
-import IErrorObject from "../../../interfaces/ErrorObject.interface";
+import IErrorObject from '../../../interfaces/ErrorObject.interface';
 /**
  * Builds error object
  * @param {number} code - error code
@@ -7,7 +7,7 @@ import IErrorObject from "../../../interfaces/ErrorObject.interface";
 const buildErrObject = (code: number, message: string): IErrorObject => {
   return {
     code,
-    message,
+    message
   };
 };
 

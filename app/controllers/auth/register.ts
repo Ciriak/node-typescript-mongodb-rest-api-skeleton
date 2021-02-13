@@ -1,12 +1,12 @@
-import { Request, Response } from "express";
-import { matchedData } from "express-validator";
-import emailExists from "../../middleware/emailer/emailExists";
-import sendRegistrationEmailMessage from "../../middleware/emailer/sendRegistrationEmailMessage";
-import handleError from "../../middleware/utils/handleError";
-import { IUser } from "../../models/user";
-import registerUser from "./helpers/registerUser";
-import returnRegisterToken from "./helpers/returnRegisterToken";
-import setUserInfo from "./helpers/setUserInfo";
+import { Request, Response } from 'express';
+import { matchedData } from 'express-validator';
+import emailExists from '../../middleware/emailer/emailExists';
+import sendRegistrationEmailMessage from '../../middleware/emailer/sendRegistrationEmailMessage';
+import handleError from '../../middleware/utils/handleError';
+import { IUser } from '../../models/user';
+import registerUser from './helpers/registerUser';
+import returnRegisterToken from './helpers/returnRegisterToken';
+import setUserInfo from './helpers/setUserInfo';
 
 /**
  * Register function called by route

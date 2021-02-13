@@ -1,6 +1,6 @@
-import { v4 } from "uuid";
-import buildErrObject from "../../../middleware/utils/buildErrObject";
-import User, { IUser } from "../../../models/user";
+import { v4 } from 'uuid';
+import buildErrObject from '../../../middleware/utils/buildErrObject';
+import User, { IUser } from '../../../models/user';
 
 /**
  * Registers a new user in database
@@ -12,7 +12,7 @@ const registerUser = (req: IUser): Promise<IUser> => {
       name: req.name,
       email: req.email,
       password: req.password,
-      verification: v4(),
+      verification: v4()
     });
     user.save((err, item) => {
       if (err) {

@@ -1,8 +1,8 @@
-import { Request, Response } from "express";
-import { matchedData } from "express-validator";
-import handleError from "../../middleware/utils/handleError";
-import verificationExists from "./helpers/verificationExists";
-import verifyUser from "./helpers/verifyUser";
+import { Request, Response } from 'express';
+import { matchedData } from 'express-validator';
+import handleError from '../../middleware/utils/handleError';
+import verificationExists from './helpers/verificationExists';
+import verifyUser from './helpers/verifyUser';
 
 /**
  * Verify function called by route

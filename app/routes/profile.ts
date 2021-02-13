@@ -1,18 +1,18 @@
-import express from "express";
+import express from 'express';
 const router = express.Router();
-require("../../config/passport");
-import passport from "passport";
-import roleAuthorization from "../controllers/auth/roleAuthorization";
-import { UserRole } from "../models/user";
-const requireAuth = passport.authenticate("jwt", {
-  session: false,
+require('../../config/passport');
+import passport from 'passport';
+import roleAuthorization from '../controllers/auth/roleAuthorization';
+import { UserRole } from '../models/user';
+const requireAuth = passport.authenticate('jwt', {
+  session: false
 });
-const trimRequest = require("trim-request");
-import getProfile from "../controllers/profile/getProfile";
-import validateUpdateProfile from "../controllers/profile/validators/validateUpdateProfile";
-import updateProfile from "../controllers/profile/updateProfile";
-import validateChangePassword from "../controllers/profile/validators/validateChangePassword";
-import changePassword from "../controllers/profile/changePassword";
+const trimRequest = require('trim-request');
+import getProfile from '../controllers/profile/getProfile';
+import validateUpdateProfile from '../controllers/profile/validators/validateUpdateProfile';
+import updateProfile from '../controllers/profile/updateProfile';
+import validateChangePassword from '../controllers/profile/validators/validateChangePassword';
+import changePassword from '../controllers/profile/changePassword';
 
 /*
  * Profile routes
@@ -22,7 +22,7 @@ import changePassword from "../controllers/profile/changePassword";
  * Get profile route
  */
 router.get(
-  "/",
+  '/',
   requireAuth,
   roleAuthorization([UserRole.USER, UserRole.ADMIN]),
   trimRequest.all,
@@ -33,7 +33,7 @@ router.get(
  * Update profile route
  */
 router.patch(
-  "/",
+  '/',
   requireAuth,
   roleAuthorization([UserRole.USER, UserRole.ADMIN]),
   trimRequest.all,
@@ -45,7 +45,7 @@ router.patch(
  * Change password route
  */
 router.post(
-  "/changePassword",
+  '/changePassword',
   requireAuth,
   roleAuthorization([UserRole.USER, UserRole.ADMIN]),
   trimRequest.all,

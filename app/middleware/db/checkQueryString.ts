@@ -1,4 +1,4 @@
-import buildErrObject from "../utils/buildErrObject";
+import buildErrObject from '../utils/buildErrObject';
 
 /**
  * Checks the query string for filtering records
@@ -10,21 +10,21 @@ const checkQueryString = (query: any): Promise<object> => {
   return new Promise((resolve, reject) => {
     try {
       if (
-        typeof query.filter !== "undefined" &&
-        typeof query.fields !== "undefined"
+        typeof query.filter !== 'undefined' &&
+        typeof query.fields !== 'undefined'
       ) {
         const data: { $or: any[] } = {
-          $or: [],
+          $or: []
         };
         const array: any[] = [];
         // Takes fields param and builds an array by splitting with ','
-        const arrayFields = query.fields.split(",");
+        const arrayFields = query.fields.split(',');
         // Adds SQL Like %word% with regex
         arrayFields.map((item: any) => {
           array.push({
             [item]: {
-              $regex: new RegExp(query.filter, "i"),
-            },
+              $regex: new RegExp(query.filter, 'i')
+            }
           });
         });
         // Puts array result in data
@@ -35,7 +35,7 @@ const checkQueryString = (query: any): Promise<object> => {
       }
     } catch (err) {
       console.log(err.message);
-      reject(buildErrObject(422, "ERROR_WITH_FILTER"));
+      reject(buildErrObject(422, 'ERROR_WITH_FILTER'));
     }
   });
 };

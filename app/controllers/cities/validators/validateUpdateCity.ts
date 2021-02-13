@@ -1,27 +1,27 @@
-import { NextFunction, Request, Response } from "express";
+import { NextFunction, Request, Response } from 'express';
 
-import { check } from "express-validator";
-import validateResult from "../../../middleware/utils/validateResult";
+import { check } from 'express-validator';
+import validateResult from '../../../middleware/utils/validateResult';
 
 /**
  * Validates update item request
  */
 const validateUpdateCity = [
-  check("name")
+  check('name')
     .exists()
-    .withMessage("MISSING")
+    .withMessage('MISSING')
     .not()
     .isEmpty()
-    .withMessage("IS_EMPTY"),
-  check("id")
+    .withMessage('IS_EMPTY'),
+  check('id')
     .exists()
-    .withMessage("MISSING")
+    .withMessage('MISSING')
     .not()
     .isEmpty()
-    .withMessage("IS_EMPTY"),
+    .withMessage('IS_EMPTY'),
   (req: Request, res: Response, next: NextFunction) => {
     validateResult(req, res, next);
-  },
+  }
 ];
 
 export default validateUpdateCity;

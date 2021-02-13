@@ -1,5 +1,5 @@
-import { CallbackError, Document, Model } from "mongoose";
-import buildErrObject from "../utils/buildErrObject";
+import { CallbackError, Document, Model } from 'mongoose';
+import buildErrObject from '../utils/buildErrObject';
 
 /**
  * Creates a new item in database

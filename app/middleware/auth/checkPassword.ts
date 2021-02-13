@@ -1,5 +1,5 @@
-import { IUser } from "../../models/user";
-import buildErrObject from "../utils/buildErrObject";
+import { IUser } from '../../models/user';
+import buildErrObject from '../utils/buildErrObject';
 
 /**
  * Checks is password matches

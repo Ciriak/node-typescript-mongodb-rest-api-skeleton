@@ -1,5 +1,5 @@
-import User, { IUser } from "../../models/user";
-import buildErrObject from "../utils/buildErrObject";
+import User, { IUser } from '../../models/user';
+import buildErrObject from '../utils/buildErrObject';
 
 /**
  * Checks User model if user with an specific email exists but excluding user id
@@ -15,8 +15,8 @@ const emailExistsExcludingMyself = (
       {
         email,
         _id: {
-          $ne: id,
-        },
+          $ne: id
+        }
       },
       async (err: Error, item: IUser) => {
         if (err) {
@@ -24,7 +24,7 @@ const emailExistsExcludingMyself = (
         }
 
         if (item) {
-          return reject(buildErrObject(422, "EMAIL_ALREADY_EXISTS"));
+          return reject(buildErrObject(422, 'EMAIL_ALREADY_EXISTS'));
         }
 
         resolve(false);

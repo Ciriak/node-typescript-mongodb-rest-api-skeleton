@@ -1,8 +1,8 @@
-import listInitOptions from "./listInitOptions";
-import cleanPaginationID from "./cleanPaginationID";
-import { Request } from "express";
-import { Model, PaginateResult } from "mongoose";
-import buildErrObject from "../utils/buildErrObject";
+import listInitOptions from './listInitOptions';
+import cleanPaginationID from './cleanPaginationID';
+import { Request } from 'express';
+import { Model, PaginateResult } from 'mongoose';
+import buildErrObject from '../utils/buildErrObject';
 
 /**
  * Gets items from database

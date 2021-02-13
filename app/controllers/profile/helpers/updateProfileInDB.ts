@@ -1,6 +1,6 @@
-import User, { IUser } from "../../../models/user";
-import { CallbackError } from "mongoose";
-import itemNotFound from "../../../middleware/utils/itemNotFound";
+import User, { IUser } from '../../../models/user';
+import { CallbackError } from 'mongoose';
+import itemNotFound from '../../../middleware/utils/itemNotFound';
 
 /**
  * Updates profile in database
@@ -15,11 +15,11 @@ const updateProfileInDB = (req: Record<string, any>, id: string) => {
       {
         new: true,
         runValidators: true,
-        select: "-role -_id -updatedAt -createdAt",
+        select: '-role -_id -updatedAt -createdAt'
       } as any, //FIXME
       async (err: CallbackError, user: IUser) => {
         try {
-          await itemNotFound(err, user, "NOT_FOUND");
+          await itemNotFound(err, user, 'NOT_FOUND');
           resolve(user);
         } catch (error) {
           reject(error);

@@ -1,7 +1,7 @@
-import i18n from "i18n";
-import { IForgotPassword } from "../../models/forgotPassword";
-import { IUser } from "../../models/user";
-import prepareToSendEmail from "./prepareToSendEmail";
+import i18n from 'i18n';
+import { IForgotPassword } from '../../models/forgotPassword';
+import { IUser } from '../../models/user';
+import prepareToSendEmail from './prepareToSendEmail';
 
 /**
  * Sends reset password email
@@ -13,12 +13,12 @@ const sendResetPasswordEmailMessage = (
   user: IForgotPassword
 ) => {
   i18n.setLocale(locale);
-  const subject = i18n.__("forgotPassword.SUBJECT");
+  const subject = i18n.__('forgotPassword.SUBJECT');
   const htmlMessage = i18n.__(
-    "forgotPassword.MESSAGE",
+    'forgotPassword.MESSAGE',
     user.email,
-    process.env.FRONTEND_URL || "",
-    user.verification || ""
+    process.env.FRONTEND_URL || '',
+    user.verification || ''
   );
   prepareToSendEmail(user as IUser, subject, htmlMessage);
 };

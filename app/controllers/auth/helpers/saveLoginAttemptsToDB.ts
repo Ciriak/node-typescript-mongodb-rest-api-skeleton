@@ -1,6 +1,6 @@
-import { CallbackError } from "mongoose";
-import buildErrObject from "../../../middleware/utils/buildErrObject";
-import { IUser } from "../../../models/user";
+import { CallbackError } from 'mongoose';
+import buildErrObject from '../../../middleware/utils/buildErrObject';
+import { IUser } from '../../../models/user';
 
 /**
  * Saves login attempts to dabatabse

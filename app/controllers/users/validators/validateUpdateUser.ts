@@ -1,68 +1,68 @@
-import validator from "validator";
-import { check } from "express-validator";
-import { NextFunction, Request, Response } from "express";
-import validateResult from "../../../middleware/utils/validateResult";
+import validator from 'validator';
+import { check } from 'express-validator';
+import { NextFunction, Request, Response } from 'express';
+import validateResult from '../../../middleware/utils/validateResult';
 
 /**
  * Validates update item request
  */
 const validateUpdateUser = [
-  check("name")
+  check('name')
     .exists()
-    .withMessage("MISSING")
+    .withMessage('MISSING')
     .not()
     .isEmpty()
-    .withMessage("IS_EMPTY"),
-  check("email")
+    .withMessage('IS_EMPTY'),
+  check('email')
     .exists()
-    .withMessage("MISSING")
+    .withMessage('MISSING')
     .not()
     .isEmpty()
-    .withMessage("IS_EMPTY"),
-  check("role")
+    .withMessage('IS_EMPTY'),
+  check('role')
     .exists()
-    .withMessage("MISSING")
+    .withMessage('MISSING')
     .not()
     .isEmpty()
-    .withMessage("IS_EMPTY"),
-  check("phone")
+    .withMessage('IS_EMPTY'),
+  check('phone')
     .exists()
-    .withMessage("MISSING")
+    .withMessage('MISSING')
     .not()
     .isEmpty()
-    .withMessage("IS_EMPTY")
+    .withMessage('IS_EMPTY')
     .trim(),
-  check("city")
+  check('city')
     .exists()
-    .withMessage("MISSING")
+    .withMessage('MISSING')
     .not()
     .isEmpty()
-    .withMessage("IS_EMPTY")
+    .withMessage('IS_EMPTY')
     .trim(),
-  check("country")
+  check('country')
     .exists()
-    .withMessage("MISSING")
+    .withMessage('MISSING')
     .not()
     .isEmpty()
-    .withMessage("IS_EMPTY")
+    .withMessage('IS_EMPTY')
     .trim(),
-  check("urlTwitter")
+  check('urlTwitter')
     .optional()
-    .custom((v) => (v === "" ? true : validator.isURL(v)))
-    .withMessage("NOT_A_VALID_URL"),
-  check("urlGitHub")
+    .custom((v) => (v === '' ? true : validator.isURL(v)))
+    .withMessage('NOT_A_VALID_URL'),
+  check('urlGitHub')
     .optional()
-    .custom((v) => (v === "" ? true : validator.isURL(v)))
-    .withMessage("NOT_A_VALID_URL"),
-  check("id")
+    .custom((v) => (v === '' ? true : validator.isURL(v)))
+    .withMessage('NOT_A_VALID_URL'),
+  check('id')
     .exists()
-    .withMessage("MISSING")
+    .withMessage('MISSING')
     .not()
     .isEmpty()
-    .withMessage("IS_EMPTY"),
+    .withMessage('IS_EMPTY'),
   (req: Request, res: Response, next: NextFunction) => {
     validateResult(req, res, next);
-  },
+  }
 ];
 
 export default validateUpdateUser;

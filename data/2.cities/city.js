@@ -1,4 +1,4 @@
-const faker = require('faker')
+const faker = require('faker');
 
 const json = [
   {
@@ -51,6 +51,6 @@ const json = [
     createdAt: faker.date.past(),
     updatedAt: faker.date.recent()
   }
-]
+];
 
-module.exports = json
+module.exports = json;

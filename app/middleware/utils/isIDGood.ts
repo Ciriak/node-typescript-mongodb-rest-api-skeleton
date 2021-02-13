@@ -1,5 +1,5 @@
-import mongoose from "mongoose";
-import buildErrObject from "./buildErrObject";
+import mongoose from 'mongoose';
+import buildErrObject from './buildErrObject';
 
 /**
  * Checks if given ID is good for MongoDB
@@ -8,7 +8,7 @@ import buildErrObject from "./buildErrObject";
 const isIDGood = async (id: string): Promise<string> => {
   return new Promise((resolve, reject) => {
     const goodID = mongoose.Types.ObjectId.isValid(id);
-    return goodID ? resolve(id) : reject(buildErrObject(422, "ID_MALFORMED"));
+    return goodID ? resolve(id) : reject(buildErrObject(422, 'ID_MALFORMED'));
   });
 };
 

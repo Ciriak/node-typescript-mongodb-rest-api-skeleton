@@ -1,11 +1,11 @@
-import { Request, Response } from "express";
+import { Request, Response } from 'express';
 
-import { matchedData } from "express-validator";
-import handleError from "../../middleware/utils/handleError";
-import findForgotPassword from "./helpers/findForgotPassword";
-import findUserToResetPassword from "./helpers/findUserToResetPassword";
-import markResetPasswordAsUsed from "./helpers/markResetPasswordAsUsed";
-import updatePassword from "./helpers/updatePassword";
+import { matchedData } from 'express-validator';
+import handleError from '../../middleware/utils/handleError';
+import findForgotPassword from './helpers/findForgotPassword';
+import findUserToResetPassword from './helpers/findUserToResetPassword';
+import markResetPasswordAsUsed from './helpers/markResetPasswordAsUsed';
+import updatePassword from './helpers/updatePassword';
 
 /**
  * Reset password function called by route

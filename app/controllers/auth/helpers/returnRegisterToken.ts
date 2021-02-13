@@ -1,5 +1,5 @@
-import { IUser } from "../../../models/user";
-import generateToken from "./generateToken";
+import { IUser } from '../../../models/user';
+import generateToken from './generateToken';
 
 /**
  * Builds the registration token
@@ -9,7 +9,7 @@ import generateToken from "./generateToken";
 const returnRegisterToken = (
   {
     _id,
-    verification,
+    verification
   }: {
     _id?: string;
     verification?: string;
@@ -20,12 +20,12 @@ const returnRegisterToken = (
   user: IUser;
 }> => {
   return new Promise((resolve) => {
-    if (process.env.NODE_ENV !== "production") {
+    if (process.env.NODE_ENV !== 'production') {
       userInfo.verification = verification;
     }
     const data = {
-      token: generateToken(_id || ""),
-      user: userInfo,
+      token: generateToken(_id || ''),
+      user: userInfo
     };
     resolve(data);
   });

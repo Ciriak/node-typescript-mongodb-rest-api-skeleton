@@ -1,5 +1,5 @@
-import buildErrObject from "../../../middleware/utils/buildErrObject";
-import City from "../../../models/city";
+import buildErrObject from '../../../middleware/utils/buildErrObject';
+import City from '../../../models/city';
 
 /**
  * Checks if a city already exists in database
@@ -9,7 +9,7 @@ const cityExists = (name: string) => {
   return new Promise((resolve, reject) => {
     City.findOne(
       {
-        name,
+        name
       },
       (err: Error, item: object) => {
         if (err) {
@@ -17,7 +17,7 @@ const cityExists = (name: string) => {
         }
 
         if (item) {
-          return reject(buildErrObject(422, "CITY_ALREADY_EXISTS"));
+          return reject(buildErrObject(422, 'CITY_ALREADY_EXISTS'));
         }
         resolve(false);
       }

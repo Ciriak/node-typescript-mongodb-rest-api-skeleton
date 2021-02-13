@@ -1,5 +1,5 @@
-import mongoose, { Document } from "mongoose";
-import validator from "validator";
+import mongoose, { Document } from 'mongoose';
+import validator from 'validator';
 
 export interface IForgotPassword extends Document {
   email: string;
@@ -19,43 +19,43 @@ const ForgotPasswordSchema = new mongoose.Schema(
       type: String,
       validate: {
         validator: validator.isEmail,
-        message: "EMAIL_IS_NOT_VALID",
+        message: 'EMAIL_IS_NOT_VALID'
       },
       lowercase: true,
-      required: true,
+      required: true
     },
     verification: {
-      type: String,
+      type: String
     },
     used: {
       type: Boolean,
-      default: false,
+      default: false
     },
     ipRequest: {
-      type: String,
+      type: String
     },
     browserRequest: {
-      type: String,
+      type: String
     },
     countryRequest: {
-      type: String,
+      type: String
     },
     ipChanged: {
-      type: String,
+      type: String
     },
     browserChanged: {
-      type: String,
+      type: String
     },
     countryChanged: {
-      type: String,
-    },
+      type: String
+    }
   },
   {
     versionKey: false,
-    timestamps: true,
+    timestamps: true
   }
 );
 export default mongoose.model<IForgotPassword>(
-  "ForgotPassword",
+  'ForgotPassword',
   ForgotPasswordSchema
 );

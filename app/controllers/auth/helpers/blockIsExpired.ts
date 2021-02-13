@@ -6,7 +6,7 @@ const LOGIN_ATTEMPTS = 5;
  */
 const blockIsExpired = ({
   loginAttempts = 0,
-  blockExpires = new Date(),
+  blockExpires = new Date()
 }: {
   loginAttempts: number;
   blockExpires: Date;

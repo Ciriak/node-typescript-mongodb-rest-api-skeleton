@@ -1,7 +1,7 @@
-import { validationResult } from "express-validator";
-import handleError from "./handleError";
-import buildErrObject from "./buildErrObject";
-import { NextFunction, Request, Response } from "express";
+import { validationResult } from 'express-validator';
+import handleError from './handleError';
+import buildErrObject from './buildErrObject';
+import { NextFunction, Request, Response } from 'express';
 
 /**
  * Builds error for validation files

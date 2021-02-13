@@ -1,12 +1,12 @@
-import { Request } from "express";
-import { IUser } from "../../../models/user";
-import UserAccess from "../../../models/userAccess";
-import setUserInfo from "./setUserInfo";
-import generateToken from "./generateToken";
-import getBrowserInfo from "../../../middleware/utils/getBrowserInfo";
-import getCountry from "../../../middleware/utils/getCountry";
-import buildErrObject from "../../../middleware/utils/buildErrObject";
-import getIP from "../../../middleware/utils/getIP";
+import { Request } from 'express';
+import { IUser } from '../../../models/user';
+import UserAccess from '../../../models/userAccess';
+import setUserInfo from './setUserInfo';
+import generateToken from './generateToken';
+import getBrowserInfo from '../../../middleware/utils/getBrowserInfo';
+import getCountry from '../../../middleware/utils/getCountry';
+import buildErrObject from '../../../middleware/utils/buildErrObject';
+import getIP from '../../../middleware/utils/getIP';
 
 /**
  * Saves a new user access and then returns token
@@ -25,7 +25,7 @@ const saveUserAccessAndReturnToken = (
       email: user.email,
       ip: getIP(req),
       browser: getBrowserInfo(req),
-      country: getCountry(req),
+      country: getCountry(req)
     });
     userAccess.save(async (err) => {
       try {
@@ -36,7 +36,7 @@ const saveUserAccessAndReturnToken = (
         // Returns data with access token
         resolve({
           token: generateToken(user._id),
-          user: userInfo,
+          user: userInfo
         });
       } catch (error) {
         reject(error);

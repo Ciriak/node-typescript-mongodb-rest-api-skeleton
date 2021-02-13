@@ -1,13 +1,13 @@
-import { Request, Response } from "express";
-import { matchedData } from "express-validator";
-import checkPassword from "../../middleware/auth/checkPassword";
-import handleError from "../../middleware/utils/handleError";
-import checkLoginAttemptsAndBlockExpires from "./helpers/checkLoginAttemptsAndBlockExpires";
-import findUser from "./helpers/findUser";
-import passwordsDoNotMatch from "./helpers/passwordsDoNotMatch";
-import saveLoginAttemptsToDB from "./helpers/saveLoginAttemptsToDB";
-import saveUserAccessAndReturnToken from "./helpers/saveUserAccessAndReturnToken";
-import userIsBlocked from "./helpers/userIsBlocked";
+import { Request, Response } from 'express';
+import { matchedData } from 'express-validator';
+import checkPassword from '../../middleware/auth/checkPassword';
+import handleError from '../../middleware/utils/handleError';
+import checkLoginAttemptsAndBlockExpires from './helpers/checkLoginAttemptsAndBlockExpires';
+import findUser from './helpers/findUser';
+import passwordsDoNotMatch from './helpers/passwordsDoNotMatch';
+import saveLoginAttemptsToDB from './helpers/saveLoginAttemptsToDB';
+import saveUserAccessAndReturnToken from './helpers/saveUserAccessAndReturnToken';
+import userIsBlocked from './helpers/userIsBlocked';
 
 /**
  * Login function called by route

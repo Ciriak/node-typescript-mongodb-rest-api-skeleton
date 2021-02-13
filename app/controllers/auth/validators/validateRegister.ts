@@ -1,38 +1,38 @@
-import { check } from "express-validator";
-import { NextFunction, Request, Response } from "express";
-import validateResult from "../../../middleware/utils/validateResult";
+import { check } from 'express-validator';
+import { NextFunction, Request, Response } from 'express';
+import validateResult from '../../../middleware/utils/validateResult';
 
 /**
  * Validates register request
  */
 const validateRegister = [
-  check("name")
+  check('name')
     .exists()
-    .withMessage("MISSING")
+    .withMessage('MISSING')
     .not()
     .isEmpty()
-    .withMessage("IS_EMPTY"),
-  check("email")
+    .withMessage('IS_EMPTY'),
+  check('email')
     .exists()
-    .withMessage("MISSING")
+    .withMessage('MISSING')
     .not()
     .isEmpty()
-    .withMessage("IS_EMPTY")
+    .withMessage('IS_EMPTY')
     .isEmail()
-    .withMessage("EMAIL_IS_NOT_VALID"),
-  check("password")
+    .withMessage('EMAIL_IS_NOT_VALID'),
+  check('password')
     .exists()
-    .withMessage("MISSING")
+    .withMessage('MISSING')
     .not()
     .isEmpty()
-    .withMessage("IS_EMPTY")
+    .withMessage('IS_EMPTY')
     .isLength({
-      min: 5,
+      min: 5
     })
-    .withMessage("PASSWORD_TOO_SHORT_MIN_5"),
+    .withMessage('PASSWORD_TOO_SHORT_MIN_5'),
   (req: Request, res: Response, next: NextFunction) => {
     validateResult(req, res, next);
-  },
+  }
 ];
 
 export default validateRegister;

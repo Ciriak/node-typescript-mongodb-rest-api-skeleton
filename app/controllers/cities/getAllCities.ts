@@ -1,6 +1,6 @@
-import { Request, Response } from "express";
-import handleError from "../../middleware/utils/handleError";
-import getAllItemsFromDB from "./helpers/getAllItemsFromDB";
+import { Request, Response } from 'express';
+import handleError from '../../middleware/utils/handleError';
+import getAllItemsFromDB from './helpers/getAllItemsFromDB';
 
 /**
  * Get all items function called by route

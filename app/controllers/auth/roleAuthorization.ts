@@ -1,7 +1,7 @@
-import { NextFunction, Request, Response } from "express";
-import handleError from "../../middleware/utils/handleError";
-import { UserRole } from "../../models/user";
-import checkPermissions from "./helpers/checkPermissions";
+import { NextFunction, Request, Response } from 'express';
+import handleError from '../../middleware/utils/handleError';
+import { UserRole } from '../../models/user';
+import checkPermissions from './helpers/checkPermissions';
 
 /**
  * Roles authorization function called by route
@@ -15,7 +15,7 @@ const roleAuthorization = (roles: UserRole[]) => async (
   try {
     const data = {
       id: (req as any).user._id,
-      roles,
+      roles
     };
     await checkPermissions(data, next);
   } catch (error) {

@@ -1,5 +1,5 @@
-import mongoose, { Schema, Document } from "mongoose";
-import validator from "validator";
+import mongoose, { Schema, Document } from 'mongoose';
+import validator from 'validator';
 
 export interface IUserAccess extends Document {
   email: string;
@@ -14,27 +14,27 @@ const UserAccessSchema: Schema = new mongoose.Schema(
       type: String,
       validate: {
         validator: validator.isEmail,
-        message: "EMAIL_IS_NOT_VALID",
+        message: 'EMAIL_IS_NOT_VALID'
       },
       lowercase: true,
-      required: true,
+      required: true
     },
     ip: {
       type: String,
-      required: true,
+      required: true
     },
     browser: {
       type: String,
-      required: true,
+      required: true
     },
     country: {
       type: String,
-      required: true,
-    },
+      required: true
+    }
   },
   {
     versionKey: false,
-    timestamps: true,
+    timestamps: true
   }
 );
-export default mongoose.model<IUserAccess>("UserAccess", UserAccessSchema);
+export default mongoose.model<IUserAccess>('UserAccess', UserAccessSchema);

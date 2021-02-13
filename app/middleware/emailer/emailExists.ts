@@ -1,5 +1,5 @@
-import User, { IUser } from "../../models/user";
-import buildErrObject from "../utils/buildErrObject";
+import User, { IUser } from '../../models/user';
+import buildErrObject from '../utils/buildErrObject';
 
 /**
  * Checks User model if user with an specific email exists
@@ -9,7 +9,7 @@ const emailExists = (email: string) => {
   return new Promise((resolve, reject) => {
     User.findOne(
       {
-        email,
+        email
       },
       (err: Error, item: IUser) => {
         if (err) {
@@ -17,7 +17,7 @@ const emailExists = (email: string) => {
         }
 
         if (item) {
-          return reject(buildErrObject(422, "EMAIL_ALREADY_EXISTS"));
+          return reject(buildErrObject(422, 'EMAIL_ALREADY_EXISTS'));
         }
         resolve(false);
       }

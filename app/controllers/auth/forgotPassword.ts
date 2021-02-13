@@ -1,11 +1,11 @@
-import { Request, Response } from "express";
+import { Request, Response } from 'express';
 
-import { matchedData } from "express-validator";
-import sendResetPasswordEmailMessage from "../../middleware/emailer/sendResetPasswordEmailMessage";
-import handleError from "../../middleware/utils/handleError";
-import findUser from "./helpers/findUser";
-import forgotPasswordResponse from "./helpers/forgotPasswordResponse";
-import saveForgotPassword from "./helpers/saveForgotPassword";
+import { matchedData } from 'express-validator';
+import sendResetPasswordEmailMessage from '../../middleware/emailer/sendResetPasswordEmailMessage';
+import handleError from '../../middleware/utils/handleError';
+import findUser from './helpers/findUser';
+import forgotPasswordResponse from './helpers/forgotPasswordResponse';
+import saveForgotPassword from './helpers/saveForgotPassword';
 
 /**
  * Forgot password function called by route
@@ -23,7 +23,7 @@ const forgotPassword = async (req: Request, res: Response) => {
     res.status(200).json(
       forgotPasswordResponse({
         email: item.email,
-        verification: item.verification || "",
+        verification: item.verification || ''
       })
     );
   } catch (error) {

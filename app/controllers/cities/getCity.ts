@@ -1,9 +1,9 @@
-import { Request, Response } from "express";
-import { matchedData } from "express-validator";
-import getItem from "../../middleware/db/getItem";
-import handleError from "../../middleware/utils/handleError";
-import isIDGood from "../../middleware/utils/isIDGood";
-import City from "../../models/city";
+import { Request, Response } from 'express';
+import { matchedData } from 'express-validator';
+import getItem from '../../middleware/db/getItem';
+import handleError from '../../middleware/utils/handleError';
+import isIDGood from '../../middleware/utils/isIDGood';
+import City from '../../models/city';
 
 /**
  * Get item function called by route

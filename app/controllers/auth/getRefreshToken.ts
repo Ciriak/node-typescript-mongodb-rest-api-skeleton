@@ -1,10 +1,10 @@
-import { Request, Response } from "express";
-import buildErrObject from "../../middleware/utils/buildErrObject";
-import handleError from "../../middleware/utils/handleError";
-import isIDGood from "../../middleware/utils/isIDGood";
-import findUserById from "./helpers/findUserById";
-import getUserIdFromToken from "./helpers/getUserIdFromToken";
-import saveUserAccessAndReturnToken from "./helpers/saveUserAccessAndReturnToken";
+import { Request, Response } from 'express';
+import buildErrObject from '../../middleware/utils/buildErrObject';
+import handleError from '../../middleware/utils/handleError';
+import isIDGood from '../../middleware/utils/isIDGood';
+import findUserById from './helpers/findUserById';
+import getUserIdFromToken from './helpers/getUserIdFromToken';
+import saveUserAccessAndReturnToken from './helpers/saveUserAccessAndReturnToken';
 
 /**
  * Refresh token function called by route
@@ -14,13 +14,13 @@ import saveUserAccessAndReturnToken from "./helpers/saveUserAccessAndReturnToken
 const getRefreshToken = async (req: Request, res: Response) => {
   try {
     if (!req.headers.authorization) {
-      const err = buildErrObject(422, "MISSING_TOKEN");
+      const err = buildErrObject(422, 'MISSING_TOKEN');
       handleError(res, err);
       return;
     }
 
     const tokenEncrypted = req.headers.authorization
-      .replace("Bearer ", "")
+      .replace('Bearer ', '')
       .trim();
     let userId = await getUserIdFromToken(tokenEncrypted);
     userId = await isIDGood(userId);

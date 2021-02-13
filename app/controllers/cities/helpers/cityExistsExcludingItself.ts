@@ -1,5 +1,5 @@
-import buildErrObject from "../../../middleware/utils/buildErrObject";
-import City from "../../../models/city";
+import buildErrObject from '../../../middleware/utils/buildErrObject';
+import City from '../../../models/city';
 
 /**
  * Checks if a city already exists excluding itself
@@ -12,8 +12,8 @@ const cityExistsExcludingItself = (id: string, name: string) => {
       {
         name,
         _id: {
-          $ne: id,
-        },
+          $ne: id
+        }
       },
       (err: Error, item: object) => {
         if (err) {
@@ -21,7 +21,7 @@ const cityExistsExcludingItself = (id: string, name: string) => {
         }
 
         if (item) {
-          return reject(buildErrObject(422, "CITY_ALREADY_EXISTS"));
+          return reject(buildErrObject(422, 'CITY_ALREADY_EXISTS'));
         }
 
         resolve(false);

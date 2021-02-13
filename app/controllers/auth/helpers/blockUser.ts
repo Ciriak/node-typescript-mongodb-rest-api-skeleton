@@ -1,8 +1,8 @@
-import { IUser } from "../../../models/user";
+import { IUser } from '../../../models/user';
 
-import { addHours } from "date-fns";
-import buildErrObject from "../../../middleware/utils/buildErrObject";
-import IErrorObject from "../../../../interfaces/ErrorObject.interface";
+import { addHours } from 'date-fns';
+import buildErrObject from '../../../middleware/utils/buildErrObject';
+import IErrorObject from '../../../../interfaces/ErrorObject.interface';
 const HOURS_TO_BLOCK = 2;
 
 /**
@@ -17,7 +17,7 @@ const blockUser = (user: IUser): Promise<IErrorObject> => {
         return reject(buildErrObject(422, err.message));
       }
       if (result) {
-        return resolve(buildErrObject(409, "BLOCKED_USER"));
+        return resolve(buildErrObject(409, 'BLOCKED_USER'));
       }
     });
   });

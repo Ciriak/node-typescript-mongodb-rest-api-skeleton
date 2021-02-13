@@ -1,8 +1,8 @@
-import jwt from "jsonwebtoken";
-import decrypt from "../../../middleware/auth/decrypt";
-import buildErrObject from "../../../middleware/utils/buildErrObject";
+import jwt from 'jsonwebtoken';
+import decrypt from '../../../middleware/auth/decrypt';
+import buildErrObject from '../../../middleware/utils/buildErrObject';
 
-const secret = process.env.JWT_SECRET || "";
+const secret = process.env.JWT_SECRET || '';
 
 /**
  * Gets user id from token
@@ -14,7 +14,7 @@ const getUserIdFromToken = (token: string): Promise<string> => {
     const decryptedToken = decrypt(token);
     const decoded = jwt.verify(decryptedToken, secret);
     if (!decoded) {
-      reject(buildErrObject(409, "BAD_TOKEN"));
+      reject(buildErrObject(409, 'BAD_TOKEN'));
     }
     resolve((decoded as any).data._id);
   });

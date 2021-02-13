@@ -1,5 +1,5 @@
-import fs from "fs";
-import removeExtensionFromFile from "../middleware/utils/removeExtensionFromFile";
+import fs from 'fs';
+import removeExtensionFromFile from '../middleware/utils/removeExtensionFromFile';
 const modelsPath = `${__dirname}/`;
 
 export default function loadModels() {
@@ -12,6 +12,6 @@ export default function loadModels() {
     // Take filename and remove last part (extension)
     const modelFile = removeExtensionFromFile(file);
     // Prevents loading of this file
-    return modelFile !== "index" ? require(`./${modelFile}`) : "";
+    return modelFile !== 'index' ? require(`./${modelFile}`) : '';
   });
 }

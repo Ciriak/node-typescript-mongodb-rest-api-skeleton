@@ -1,9 +1,9 @@
-import { Request, Response } from "express";
-import { matchedData } from "express-validator";
-import emailExists from "../../middleware/emailer/emailExists";
-import sendRegistrationEmailMessage from "../../middleware/emailer/sendRegistrationEmailMessage";
-import handleError from "../../middleware/utils/handleError";
-import createItemInDb from "./helpers/createItemInDb";
+import { Request, Response } from 'express';
+import { matchedData } from 'express-validator';
+import emailExists from '../../middleware/emailer/emailExists';
+import sendRegistrationEmailMessage from '../../middleware/emailer/sendRegistrationEmailMessage';
+import handleError from '../../middleware/utils/handleError';
+import createItemInDb from './helpers/createItemInDb';
 
 /**
  * Create item function called by route

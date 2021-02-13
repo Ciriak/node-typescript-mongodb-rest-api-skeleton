@@ -1,4 +1,4 @@
-import { IUser } from "../../../models/user";
+import { IUser } from '../../../models/user';
 
 /**
  * Creates an object with user info
@@ -11,13 +11,13 @@ const setUserInfo = (req: IUser): Promise<IUser> => {
       name: req.name,
       email: req.email,
       role: req.role,
-      verified: req.verified,
+      verified: req.verified
     } as IUser;
     // Adds verification for testing purposes
-    if (process.env.NODE_ENV !== "production") {
+    if (process.env.NODE_ENV !== 'production') {
       user = {
         ...user,
-        verification: req.verification,
+        verification: req.verification
       } as IUser;
     }
     resolve(user);

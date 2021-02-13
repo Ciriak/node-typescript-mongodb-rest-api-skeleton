@@ -1,7 +1,7 @@
-import { NextFunction } from "express";
-import buildErrObject from "../../../middleware/utils/buildErrObject";
-import itemNotFound from "../../../middleware/utils/itemNotFound";
-import User, { IUser, UserRole } from "../../../models/user";
+import { NextFunction } from 'express';
+import buildErrObject from '../../../middleware/utils/buildErrObject';
+import itemNotFound from '../../../middleware/utils/itemNotFound';
+import User, { IUser, UserRole } from '../../../models/user';
 
 /**
  * Checks against user if has quested role
@@ -15,14 +15,14 @@ const checkPermissions = (
   return new Promise((resolve, reject) => {
     User.findById(id, async (err: Error, result: IUser) => {
       try {
-        await itemNotFound(err, result, "USER_NOT_FOUND");
+        await itemNotFound(err, result, 'USER_NOT_FOUND');
         if (result.role) {
           if (roles.indexOf(result.role) > -1) {
             return resolve(next());
           }
         }
 
-        reject(buildErrObject(401, "UNAUTHORIZED"));
+        reject(buildErrObject(401, 'UNAUTHORIZED'));
       } catch (error) {
         reject(error);
       }

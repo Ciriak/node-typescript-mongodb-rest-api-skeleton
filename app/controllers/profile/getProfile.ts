@@ -1,7 +1,7 @@
-import { Request, Response } from "express";
-import handleError from "../../middleware/utils/handleError";
-import isIDGood from "../../middleware/utils/isIDGood";
-import getProfileFromDB from "./helpers/getProfileFromDB";
+import { Request, Response } from 'express';
+import handleError from '../../middleware/utils/handleError';
+import isIDGood from '../../middleware/utils/isIDGood';
+import getProfileFromDB from './helpers/getProfileFromDB';
 
 /**
  * Get profile function called by route

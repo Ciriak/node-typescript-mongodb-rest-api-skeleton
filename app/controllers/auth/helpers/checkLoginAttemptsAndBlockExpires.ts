@@ -1,6 +1,6 @@
-import buildErrObject from "../../../middleware/utils/buildErrObject";
-import { IUser } from "../../../models/user";
-import blockIsExpired from "./blockIsExpired";
+import buildErrObject from '../../../middleware/utils/buildErrObject';
+import { IUser } from '../../../models/user';
+import blockIsExpired from './blockIsExpired';
 
 /**
  *
@@ -12,7 +12,7 @@ const checkLoginAttemptsAndBlockExpires = (user: IUser) => {
     if (
       blockIsExpired({
         blockExpires: user.blockExpires,
-        loginAttempts: user.loginAttempts || 0,
+        loginAttempts: user.loginAttempts || 0
       })
     ) {
       user.loginAttempts = 0;
