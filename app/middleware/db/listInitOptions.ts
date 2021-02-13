@@ -10,7 +10,7 @@ const listInitOptions = (req: Request) => {
     try {
       const order = req.query.order || -1;
       const sort = req.query.sort || 'createdAt';
-      const sortBy = buildSort(String(sort), parseInt(String(order)));
+      const sortBy = buildSort(String(sort), parseInt(String(order), 10));
       const page = parseInt(String(req.query.page), 10) || 1;
       const limit = parseInt(String(req.query.limit), 10) || 5;
       const options = {

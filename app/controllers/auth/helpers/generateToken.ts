@@ -1,7 +1,10 @@
 import jwt from 'jsonwebtoken';
 import encrypt from '../../../middleware/auth/encrypt';
 
-const expirationTime = parseInt(process.env.JWT_EXPIRATION_IN_MINUTES || '60');
+const expirationTime = parseInt(
+  process.env.JWT_EXPIRATION_IN_MINUTES || '60',
+  10
+);
 
 /**
  * Generates a token

@@ -133,7 +133,7 @@ UserSchema.pre('save', function (next) {
   return genSalt(that, SALT_FACTOR, next);
 });
 
-//FIXME this.get("password") is probably false
+// FIXME this.get("password") is probably false
 UserSchema.methods.comparePassword = function (
   passwordAttempt: string,
   cb: any
