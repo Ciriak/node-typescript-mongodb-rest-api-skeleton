@@ -4,7 +4,4 @@ orbs:
 workflows:
   node-tests:
     jobs:
-      - node/test:
-          pre-steps: # steps to run before steps defined in the job bar
-            - run:
-                command: ls -l cp .env.example .env
+      - node/test
