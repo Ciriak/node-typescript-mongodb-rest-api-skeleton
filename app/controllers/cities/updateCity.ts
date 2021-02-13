@@ -17,7 +17,7 @@ const updateCity = async (req: Request, res: Response) => {
     const id = await isIDGood(matchedReq.id);
     const doesCityExists = await cityExistsExcludingItself(id, matchedReq.name);
     if (!doesCityExists) {
-      res.status(200).json(await updateItem(id, City, req));
+      res.status(200).json(await updateItem(id, City, matchedReq as any));
     }
   } catch (error) {
     handleError(res, error);
