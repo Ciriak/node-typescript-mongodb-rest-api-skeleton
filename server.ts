@@ -1,3 +1,4 @@
+// tslint:disable-next-line: no-var-requires
 require('dotenv-safe').config();
 import express from 'express';
 import bodyParser from 'body-parser';
@@ -11,6 +12,8 @@ import i18n from 'i18n';
 import initMongo from './config/mongo';
 import path from 'path';
 import routes from './app/routes';
+import { renderFile } from 'ejs';
+import expeditiousCache from 'express-expeditious';
 
 // Setup express server port from ENV, default: 3000
 app.set('port', process.env.PORT || 3000);
@@ -22,8 +25,7 @@ if (process.env.NODE_ENV === 'development') {
 
 // Redis cache enabled by env variable
 if (process.env.USE_REDIS === 'true') {
-  const getExpeditiousCache = require('express-expeditious');
-  const cache = getExpeditiousCache({
+  const cache = expeditiousCache({
     namespace: 'expresscache',
     defaultTtl: '1 minute',
     engine: require('expeditious-engine-redis')({
@@ -66,7 +68,7 @@ app.use(compression());
 app.use(helmet());
 app.use(express.static('public'));
 app.set('views', path.join(__dirname, 'views'));
-app.engine('html', require('ejs').renderFile);
+app.engine('html', renderFile);
 app.set('view engine', 'html');
 app.use(routes);
 app.listen(app.get('port'));
