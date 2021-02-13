@@ -1,17 +1,10 @@
 version: 2.1
-
-jobs:
-  test:
-    machine: true
-    steps:
-      - checkout
-      - run:
-          command: npm test
-
+orbs:
+  node: circleci/node@3.0.0
 workflows:
-  build:
+  node-tests:
     jobs:
-      - test:
+      - node/test:
           pre-steps: # steps to run before steps defined in the job bar
             - run:
                 command: cp .env.example .env
