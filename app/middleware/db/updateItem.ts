@@ -7,7 +7,7 @@ import itemNotFound from '../utils/itemNotFound';
  * @param {Object} req - request object
  */
 const updateItem = (
-  id: string = '',
+  id = '',
   model: Model<any>,
   req: Request
 ): Promise<object> => {

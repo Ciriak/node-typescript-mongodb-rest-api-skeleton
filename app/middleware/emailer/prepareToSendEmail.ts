@@ -8,11 +8,7 @@ import sendEmail from './sendEmail';
  * @param {string} subject - subject
  * @param {string} htmlMessage - html message
  */
-const prepareToSendEmail = (
-  user: IUser,
-  subject: string = '',
-  htmlMessage: string = ''
-) => {
+const prepareToSendEmail = (user: IUser, subject = '', htmlMessage = '') => {
   const parsedUser = {
     name: user.name,
     email: user.email,
