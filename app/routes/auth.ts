@@ -5,7 +5,7 @@ import { authenticate } from 'passport';
 const requireAuth = authenticate('jwt', {
   session: false
 });
-// tslint:disable-next-line: no-var-requires
+
 const trimRequest = require('trim-request');
 import verify from '../controllers/auth/verify';
 import { UserRole } from '../models/user';

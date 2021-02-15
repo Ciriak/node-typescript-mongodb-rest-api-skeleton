@@ -1,6 +1,6 @@
 import express from 'express';
 const router = express.Router();
-// tslint:disable-next-line: no-var-requires
+
 require('../../config/passport');
 import passport from 'passport';
 import roleAuthorization from '../controllers/auth/roleAuthorization';
@@ -18,7 +18,7 @@ import { UserRole } from '../models/user';
 const requireAuth = passport.authenticate('jwt', {
   session: false
 });
-// tslint:disable-next-line: no-var-requires
+
 const trimRequest = require('trim-request');
 
 /*

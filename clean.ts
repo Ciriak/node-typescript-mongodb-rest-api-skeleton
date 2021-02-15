@@ -1,4 +1,3 @@
-// tslint:disable-next-line: no-var-requires
 require('dotenv-safe').config();
 import initMongo from './config/mongo';
 import { CallbackError, Model } from 'mongoose';
