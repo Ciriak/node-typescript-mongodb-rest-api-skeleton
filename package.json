@@ -17,7 +17,7 @@
     "fresh": "npm run clean && npm run db:clean && npm run db:seed",
     "db:clean": "ts-node clean.ts",
     "db:seed": "node seed.js",
-    "prettier": "prettier --write --config .prettierrc.json \"**/*.js\"",
+    "prettier": "prettier --write --config .prettierrc.json \"**/*.ts\"",
     "lint": "pretty-quick",
     "remark": "remark . -o",
     "clean": "rimraf -rf dist",
