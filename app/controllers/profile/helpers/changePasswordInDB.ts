@@ -1,3 +1,4 @@
+import ISuccessObject from '../../../../interfaces/SuccessObject.interface';
 import buildErrObject from '../../../middleware/utils/buildErrObject';
 import buildSuccObject from '../../../middleware/utils/buildSuccObject';
 import itemNotFound from '../../../middleware/utils/itemNotFound';
@@ -8,7 +9,10 @@ import User from '../../../models/user';
  * @param {string} id - user id
  * @param {Object} req - request object
  */
-const changePasswordInDB = (id: string, req: Record<string, any>) => {
+const changePasswordInDB = (
+  id: string,
+  req: Record<string, string>
+): Promise<ISuccessObject> => {
   return new Promise((resolve, reject) => {
     User.findById(id, '+password', null, async (err, user) => {
       try {
@@ -19,7 +23,7 @@ const changePasswordInDB = (id: string, req: Record<string, any>) => {
         }
 
         // Assigns new password to user
-        user.password = (req as any).newPassword;
+        user.password = req.newPassword;
 
         // Saves in DB
         user.save((error) => {

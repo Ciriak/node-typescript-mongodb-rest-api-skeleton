@@ -1,16 +1,21 @@
-import { Model } from 'mongoose';
+import { Document, Model } from 'mongoose';
 import itemNotFound from '../utils/itemNotFound';
 
 /**
  * Gets item from database by id
  * @param {string} id - item id
  */
-const getItem = (id: string, model: Model<any>) => {
+const getItem = (
+  id: string,
+  model: Model<Document>
+): Promise<Document<unknown>> => {
   return new Promise((resolve, reject) => {
-    model.findById(id, async (err: Error, item: object) => {
+    model.findById(id, null, null, async (err, item) => {
       try {
         await itemNotFound(err, item, 'NOT_FOUND');
-        resolve(item);
+        if (item) {
+          resolve(item);
+        }
       } catch (error) {
         reject(error);
       }

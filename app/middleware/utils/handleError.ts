@@ -6,14 +6,14 @@ import IErrorObject from '../../../interfaces/ErrorObject.interface';
  * @param {Object} res - response object
  * @param {Object} err - error object
  */
-const handleError = (res: Response, err: IErrorObject) => {
+const handleError = (res: Response, err: IErrorObject): void => {
   // Prints error in console
   if (process.env.NODE_ENV === 'development') {
     console.log(err);
   }
   // Sends error to user
   // for some reason .code is not supported ?
-  res.status((err as any).code).json({
+  res.status(err.code).json({
     errors: {
       msg: err.message
     }

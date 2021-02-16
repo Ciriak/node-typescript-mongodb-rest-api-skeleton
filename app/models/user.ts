@@ -2,7 +2,6 @@ import mongoose, { Schema, Document } from 'mongoose';
 import bcrypt from 'bcrypt';
 import validator from 'validator';
 import mongoosePaginate from 'mongoose-paginate-v2';
-import { NextFunction } from 'express';
 
 export enum UserRole {
   ADMIN = 'admin',
@@ -23,7 +22,10 @@ export interface IUser extends Document {
   urlGitHub?: string;
   loginAttempts?: number;
   blockExpires: Date;
-  comparePassword(passwordAttempt: string, cb: any): any;
+  comparePassword(
+    passwordAttempt: string,
+    callback: (err: Error | null, isMatch?: boolean) => void
+  ): void;
 }
 
 const UserSchema: Schema = new mongoose.Schema(
@@ -105,7 +107,11 @@ const UserSchema: Schema = new mongoose.Schema(
   }
 );
 
-const hash = (user: IUser, salt: string, next: NextFunction) => {
+const hash = (
+  user: IUser,
+  salt: string,
+  next: (err?: mongoose.NativeError | null | undefined) => void
+) => {
   bcrypt.hash(user.password, salt, (error, newHash) => {
     if (error) {
       return next(error);
@@ -115,7 +121,11 @@ const hash = (user: IUser, salt: string, next: NextFunction) => {
   });
 };
 
-const genSalt = (user: IUser, SALT_FACTOR: number | undefined, next: any) => {
+const genSalt = (
+  user: IUser,
+  SALT_FACTOR: number | undefined,
+  next: (err?: mongoose.NativeError | null | undefined) => void
+) => {
   bcrypt.genSalt(SALT_FACTOR, (err, salt) => {
     if (err) {
       return next(err);
@@ -133,13 +143,12 @@ UserSchema.pre('save', function (next) {
   return genSalt(that, SALT_FACTOR, next);
 });
 
-// FIXME this.get("password") is probably false
-UserSchema.methods.comparePassword = function (
+UserSchema.methods.comparePassword = (
   passwordAttempt: string,
-  cb: any
-) {
-  bcrypt.compare(passwordAttempt, this.get('password'), (err, isMatch) =>
-    err ? cb(err) : cb(null, isMatch)
+  callback: (err: Error | null, isMatch?: boolean) => void
+) => {
+  bcrypt.compare(passwordAttempt, UserSchema.get('password'), (err, isMatch) =>
+    err ? callback(err) : callback(null, isMatch)
   );
 };
 UserSchema.plugin(mongoosePaginate);

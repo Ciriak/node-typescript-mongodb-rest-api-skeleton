@@ -1,4 +1,4 @@
-import { CallbackError } from 'mongoose';
+import { CallbackError, Document } from 'mongoose';
 import buildErrObject from './buildErrObject';
 
 /**
@@ -9,7 +9,7 @@ import buildErrObject from './buildErrObject';
  */
 const itemNotFound = (
   err: CallbackError,
-  item: object | null,
+  item: Document<unknown> | null,
   message = 'NOT_FOUND'
 ): Promise<void> => {
   return new Promise((resolve, reject) => {

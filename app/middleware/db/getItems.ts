@@ -1,7 +1,7 @@
 import listInitOptions from './listInitOptions';
 import cleanPaginationID from './cleanPaginationID';
 import { Request } from 'express';
-import { Model, PaginateResult } from 'mongoose';
+import { FilterQuery, Model, PaginateModel, PaginateResult } from 'mongoose';
 import buildErrObject from '../utils/buildErrObject';
 
 /**
@@ -11,15 +11,16 @@ import buildErrObject from '../utils/buildErrObject';
  */
 const getItems = async (
   req: Request,
-  model: Model<any>,
-  query: object = {}
-) => {
+  model: Model<never>,
+  query: FilterQuery<unknown>
+): Promise<PaginateResult<unknown>> => {
   const options = await listInitOptions(req);
+
   return new Promise((resolve, reject) => {
-    (model as any).paginate(
+    (model as PaginateModel<never>).paginate(
       query,
       options,
-      (err: Error, items: PaginateResult<object>) => {
+      (err: Error, items: PaginateResult<unknown>) => {
         if (err) {
           return reject(buildErrObject(422, err.message));
         }

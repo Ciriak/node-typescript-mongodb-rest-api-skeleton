@@ -1,11 +1,12 @@
 import buildSort from './buildSort';
 import { Request } from 'express';
 import buildErrObject from '../utils/buildErrObject';
+import { PaginateOptions } from 'mongoose';
 /**
  * Builds initial options for query
  * @param {Object} query - query object
  */
-const listInitOptions = (req: Request) => {
+const listInitOptions = (req: Request): Promise<PaginateOptions> => {
   return new Promise(async (resolve, reject) => {
     try {
       const order = req.query.order || -1;

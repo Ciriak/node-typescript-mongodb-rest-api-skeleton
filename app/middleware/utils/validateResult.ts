@@ -9,7 +9,11 @@ import { NextFunction, Request, Response } from 'express';
  * @param {Object} res - response object
  * @param {Object} next - next object
  */
-const validateResult = (req: Request, res: Response, next: NextFunction) => {
+const validateResult = (
+  req: Request,
+  res: Response,
+  next: NextFunction
+): void => {
   try {
     validationResult(req).throw();
     if (req.body.email) {
