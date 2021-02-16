@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/ban-types */
 import buildErrObject from '../utils/buildErrObject';
 
 /**
@@ -6,6 +7,7 @@ import buildErrObject from '../utils/buildErrObject';
  * query.fields should be the fields to search into (array)
  * @param {Object} query - query object
  */
+
 const checkQueryString = (query: any): Promise<object> => {
   return new Promise((resolve, reject) => {
     try {
@@ -20,6 +22,7 @@ const checkQueryString = (query: any): Promise<object> => {
         // Takes fields param and builds an array by splitting with ','
         const arrayFields = query.fields.split(',');
         // Adds SQL Like %word% with regex
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         arrayFields.map((item: any) => {
           array.push({
             [item]: {

@@ -1,13 +1,15 @@
+import { Request } from 'express';
+
 /**
- * Gets country from user using CloudFlare header 'cf-ipcountry'
+ * Gets browser info from user
  * @param {*} req - request object
  */
-const getCountry = ({
-  headers
-}: {
-  headers: {
-    'cf-ipcountry': string;
-  };
-}): string => (headers['cf-ipcountry'] ? headers['cf-ipcountry'] : 'XX');
+const getBrowserInfo = (req: Request): string | undefined => {
+  const res = req.headers['cf-ipcountry'];
+  if (Array.isArray(res)) {
+    return res[0];
+  }
+  return res;
+};
 
-export default getCountry;
+export default getBrowserInfo;

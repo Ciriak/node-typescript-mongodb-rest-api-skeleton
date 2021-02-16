@@ -11,13 +11,14 @@ import buildErrObject from '../utils/buildErrObject';
  */
 const getItems = async (
   req: Request,
-  model: Model<never>,
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  model: Model<any>,
   query: FilterQuery<unknown>
 ): Promise<PaginateResult<unknown>> => {
   const options = await listInitOptions(req);
 
   return new Promise((resolve, reject) => {
-    (model as PaginateModel<never>).paginate(
+    ((model as unknown) as PaginateModel<never>).paginate(
       query,
       options,
       (err: Error, items: PaginateResult<unknown>) => {

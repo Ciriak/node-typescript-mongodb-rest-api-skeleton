@@ -5,10 +5,8 @@ import itemNotFound from '../utils/itemNotFound';
  * Gets item from database by id
  * @param {string} id - item id
  */
-const getItem = (
-  id: string,
-  model: Model<Document>
-): Promise<Document<unknown>> => {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const getItem = (id: string, model: Model<any>): Promise<Document<never>> => {
   return new Promise((resolve, reject) => {
     model.findById(id, null, null, async (err, item) => {
       try {

@@ -6,7 +6,10 @@ import City from '../../../models/city';
  * @param {string} id - id of item
  * @param {string} name - name of item
  */
-const cityExistsExcludingItself = (id: string, name: string) => {
+const cityExistsExcludingItself = (
+  id: string,
+  name: string
+): Promise<boolean> => {
   return new Promise((resolve, reject) => {
     City.findOne(
       {
@@ -15,12 +18,14 @@ const cityExistsExcludingItself = (id: string, name: string) => {
           $ne: id
         }
       },
-      (err: Error, item: object) => {
+      null,
+      null,
+      (err, doc) => {
         if (err) {
           return reject(buildErrObject(422, err.message));
         }
 
-        if (item) {
+        if (doc) {
           return reject(buildErrObject(422, 'CITY_ALREADY_EXISTS'));
         }
 

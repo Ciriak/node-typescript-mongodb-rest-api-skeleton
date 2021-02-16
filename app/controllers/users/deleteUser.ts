@@ -12,6 +12,7 @@ import handleError from '../../middleware/utils/handleError';
  * @param {Object} req - request object
  * @param {Object} res - response object
  */
+
 const deleteUser = async (req: Request, res: Response) => {
   try {
     const matchedReq = matchedData(req);

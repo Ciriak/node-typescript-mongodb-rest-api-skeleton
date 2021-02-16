@@ -10,6 +10,7 @@ import City from '../../models/city';
  * @param {Object} req - request object
  * @param {Object} res - response object
  */
+
 const getCity = async (req: Request, res: Response) => {
   try {
     const matchedReq = matchedData(req);

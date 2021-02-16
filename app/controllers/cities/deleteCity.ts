@@ -10,6 +10,7 @@ import isIDGood from '../../middleware/utils/isIDGood';
  * @param {Object} req - request object
  * @param {Object} res - response object
  */
+
 const deleteCity = async (req: Request, res: Response) => {
   try {
     const matchedReq = matchedData(req);

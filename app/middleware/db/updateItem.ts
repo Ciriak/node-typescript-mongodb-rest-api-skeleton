@@ -8,9 +8,10 @@ import itemNotFound from '../utils/itemNotFound';
  */
 const updateItem = (
   id = '',
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   model: Model<any>,
   req: Request
-): Promise<object> => {
+): Promise<Document> => {
   return new Promise((resolve, reject) => {
     model.findByIdAndUpdate(
       id,
@@ -19,10 +20,10 @@ const updateItem = (
         new: true,
         runValidators: true
       },
-      async (err, item) => {
+      async (err, doc) => {
         try {
-          await itemNotFound(err, item, 'NOT_FOUND');
-          resolve(item);
+          await itemNotFound(err, doc, 'NOT_FOUND');
+          resolve(doc);
         } catch (error) {
           reject(error);
         }

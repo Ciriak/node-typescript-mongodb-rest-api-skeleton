@@ -9,7 +9,7 @@ import buildErrObject from '../utils/buildErrObject';
  */
 const checkPassword = (password: string, user: IUser): Promise<boolean> => {
   return new Promise((resolve, reject) => {
-    user.comparePassword(password, (err: Error, isMatch: boolean) => {
+    user.comparePassword(password, (err, isMatch) => {
       if (err) {
         return reject(buildErrObject(422, err.message));
       }

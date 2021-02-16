@@ -12,12 +12,13 @@ import handleError from '../../middleware/utils/handleError';
  * @param {Object} req - request object
  * @param {Object} res - response object
  */
+
 const createCity = async (req: Request, res: Response) => {
   try {
     const matchedReq = matchedData(req);
     const doesCityExists = await cityExists(matchedReq.name);
     if (!doesCityExists) {
-      res.status(201).json(await createItem(matchedReq, City));
+      return res.status(201).json(await createItem(matchedReq, City));
     }
   } catch (error) {
     handleError(res, error);
