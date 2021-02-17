@@ -3,6 +3,7 @@ import { matchedData } from 'express-validator';
 import emailExists from '../../middleware/emailer/emailExists';
 import sendRegistrationEmailMessage from '../../middleware/emailer/sendRegistrationEmailMessage';
 import handleError from '../../middleware/utils/handleError';
+import { IUser } from '../../models/user';
 import createItemInDb from './helpers/createItemInDb';
 
 /**
@@ -17,7 +18,7 @@ const createUser = async (req: Request, res: Response) => {
     const matchedReq = matchedData(req);
     const doesEmailExists = await emailExists(matchedReq.email);
     if (!doesEmailExists) {
-      const item = await createItemInDb(matchedReq as any);
+      const item = await createItemInDb(matchedReq as IUser);
       sendRegistrationEmailMessage(locale, item);
       res.status(201).json(item);
     }

@@ -1,4 +1,4 @@
-import City from '../../models/city';
+import City, { ICity } from '../../models/city';
 
 import { matchedData } from 'express-validator';
 
@@ -15,7 +15,7 @@ import handleError from '../../middleware/utils/handleError';
 
 const createCity = async (req: Request, res: Response) => {
   try {
-    const matchedReq = matchedData(req);
+    const matchedReq = matchedData(req) as ICity;
     const doesCityExists = await cityExists(matchedReq.name);
     if (!doesCityExists) {
       return res.status(201).json(await createItem(matchedReq, City));
