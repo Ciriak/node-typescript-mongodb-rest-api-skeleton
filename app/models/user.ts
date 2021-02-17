@@ -143,13 +143,16 @@ UserSchema.pre('save', function (next) {
   return genSalt(that, SALT_FACTOR, next);
 });
 
-UserSchema.methods.comparePassword = (
+UserSchema.methods.comparePassword = function (
   passwordAttempt: string,
   callback: (err: Error | null, isMatch?: boolean) => void
-) => {
-  bcrypt.compare(passwordAttempt, UserSchema.get('password'), (err, isMatch) =>
-    err ? callback(err) : callback(null, isMatch)
-  );
+) {
+  bcrypt.compare(passwordAttempt, this.get('password'), (err, isMatch) => {
+    if (err) {
+      return callback(err);
+    }
+    return callback(null, isMatch);
+  });
 };
 UserSchema.plugin(mongoosePaginate);
 export default mongoose.model<IUser>('User', UserSchema);

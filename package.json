@@ -10,7 +10,7 @@
   "scripts": {
     "start": "cross-env NODE_ENV=production tsc -P tsconfig.json -w & pm2 start dist/server.js --watch",
     "mocha": "nyc mocha -r ts-node/register 'test/**/*.ts'  --timeout 5000 --exit",
-    "test": "npm run clean && npm run compile && npm run test:lint && npm run test:e2e",
+    "test": "npm run compile && npm run test:lint && npm run test:e2e",
     "test:lint": "pretty-quick --check --pattern **/*.ts && eslint **/*.ts",
     "test:e2e": "cross-env NODE_ENV=test npm run fresh && npm run mocha",
     "dev": "cross-env NODE_ENV=development && npm run clean && nodemon",
