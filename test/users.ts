@@ -7,7 +7,7 @@ import faker from 'faker';
 import chai from 'chai';
 import chaiHttp from 'chai-http';
 import server from '../server';
-// eslint-disable-next-line no-unused-vars
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const should = chai.should();
 const loginDetails = {
   admin: {

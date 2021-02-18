@@ -22,7 +22,7 @@ const checkQueryString = (query: any): Promise<object> => {
         // Takes fields param and builds an array by splitting with ','
         const arrayFields = query.fields.split(',');
         // Adds SQL Like %word% with regex
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        // eslint-disable-next-line
         arrayFields.map((item: any) => {
           array.push({
             [item]: {

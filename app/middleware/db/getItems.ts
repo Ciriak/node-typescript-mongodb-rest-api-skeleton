@@ -11,7 +11,7 @@ import buildErrObject from '../utils/buildErrObject';
  */
 const getItems = async (
   req: Request,
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  // eslint-disable-next-line
   model: Model<any>,
   query: FilterQuery<unknown>
 ): Promise<PaginateResult<unknown>> => {

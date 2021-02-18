@@ -7,7 +7,7 @@ import itemNotFound from '../utils/itemNotFound';
  * Deletes an item from database by id
  * @param {string} id - id of item
  */
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
+// eslint-disable-next-line
 const deleteItem = (id: string, model: Model<any>): Promise<ISuccessObject> => {
   return new Promise((resolve, reject) => {
     model.findByIdAndRemove(id, null, async (err, doc) => {

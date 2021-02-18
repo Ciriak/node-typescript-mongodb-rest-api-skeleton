@@ -8,7 +8,7 @@ import itemNotFound from '../utils/itemNotFound';
  */
 const updateItem = (
   id = '',
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  // eslint-disable-next-line
   model: Model<any>,
   req: Request
 ): Promise<Document> => {
