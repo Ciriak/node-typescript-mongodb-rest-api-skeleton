@@ -5,7 +5,7 @@ export interface ICity extends Document {
   name: string;
 }
 
-const CitySchema: Schema = new mongoose.Schema(
+const CitySchema: Schema<ICity> = new mongoose.Schema<ICity>(
   {
     name: {
       type: String,

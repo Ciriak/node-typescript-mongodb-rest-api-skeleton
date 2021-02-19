@@ -28,7 +28,7 @@ export interface IUser extends Document {
   ): void;
 }
 
-const UserSchema: Schema = new mongoose.Schema(
+const UserSchema: Schema<IUser> = new mongoose.Schema<IUser>(
   {
     name: {
       type: String,
